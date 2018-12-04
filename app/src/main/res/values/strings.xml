@@ -1,9 +1,21 @@
 <resources>
-    <string name="app_name">IceHockeyforDummies</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+
+    <!-- General strings of the app -->
+    <string name="navigation_open">Open navigation drawer</string>
+    <string name="navigation_close">Close navigation drawer</string>
+
+
+    <string name="app_name">Ice Hockey for Dummies</string>
+    <string name="gamecenter">Game Center</string>
+    <string name="nationalleague">National League</string>
+    <string name="swissleague">Swiss League</string>
+    <string name="mysportsleague">MySports League</string>
+    <string name="regioleague">Regio League / Elite</string>
+    <string name="clubs">Clubs</string>
+    <string name="settings">Settings</string>
 </resources>

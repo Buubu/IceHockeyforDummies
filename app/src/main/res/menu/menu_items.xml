@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- All itmes of the navigation menu -->
+    <group android:checkableBehavior="single">
+
+        <!-- TODO: test the look of the font and change it if needed -->
+        <!-- The "Game Center" item is automatically checked -->
+        <item
+            android:id="@+id/menu_gamecenter"
+            android:icon="@drawable/arena"
+            android:title="@string/gamecenter"
+            android:checked="true" />
+
+        <item
+            android:id="@+id/menu_nationalleague"
+            android:icon="@drawable/puck"
+            android:title="@string/nationalleague" />
+
+        <item
+            android:id="@+id/menu_swissleague"
+            android:icon="@drawable/puck"
+            android:title="@string/swissleague" />
+
+        <item
+            android:id="@+id/menu_mysportsleague"
+            android:icon="@drawable/puck"
+            android:title="@string/mysportsleague" />
+
+        <item
+            android:id="@+id/menu_regioleague"
+            android:icon="@drawable/puck"
+            android:title="@string/regioleague" />
+
+        <item
+            android:id="@+id/menu_clubs"
+            android:icon="@drawable/clubs"
+            android:title="@string/clubs" />
+
+        <item
+            android:id="@+id/menu_settings"
+            android:icon="@drawable/settings"
+            android:title="@string/settings" />
+    </group>
+</menu>
