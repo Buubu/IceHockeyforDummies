@@ -1,22 +1,21 @@
 package bum.icehockeyfordummies.user_interface;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import bum.icehockeyfordummies.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+NavigationView.OnNavigationItemSelectedListener {
+    private Toolbar toolbar;
     private DrawerLayout layout;
-    protected static int position;
+    private NavigationView navigation;
 
 
     @Override
@@ -24,91 +23,97 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Set all the elements
+        this.configureToolbar();
+        this.configureDrawerLayout();
+        this.configureNavigationView();
+    }
 
-        // Set the toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+    // Define the behaviour when the back button is pressed
+    @Override
+    public void onBackPressed() {
+        if (this.layout.isDrawerOpen(GravityCompat.START)) {
+            this.layout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    // Set the behaviour of the navigation drawer
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Check item as selected
+        item.setChecked(true);
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.menu_gamecenter:
+
+
+                break;
+            case R.id.menu_nationalleague:
+
+
+                break;
+            case R.id.menu_swissleague:
+
+
+                break;
+            case R.id.menu_mysportsleague:
+
+
+                break;
+            case R.id.menu_regioleague:
+
+
+                break;
+            case R.id.menu_clubs:
+
+
+                break;
+            case R.id.menu_settings:
+
+
+                break;
+            default:
+
+
+                break;
+        }
+
+        this.layout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    // Configuration of the toolbar
+    private void configureToolbar() {
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.setDisplayHomeAsUpEnabled(true);
+//        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    }
 
 
-        // Set the layout
-        layout = findViewById(R.id.menu_layout);
-        layout.addDrawerListener(
-                new DrawerLayout.DrawerListener() {
-                    @Override
-                    public void onDrawerSlide(View drawerView, float slideOffset) {
-                        // Respond when the drawer's position changes
-                    }
-
-                    @Override
-                    public void onDrawerOpened(View drawerView) {
-                        // Respond when the drawer is opened
-                    }
-
-                    @Override
-                    public void onDrawerClosed(View drawerView) {
-                        // Respond when the drawer is closed
-                    }
-
-                    @Override
-                    public void onDrawerStateChanged(int newState) {
-                        // Respond when the drawer motion state changes
-                    }
-                }
-        );
-
+    // Configuration of the drawer layout
+    private void configureDrawerLayout() {
+        this.layout = (DrawerLayout) findViewById(R.id.menu_layout);
 
         // Move the menu icon (= effect) when open or close the navigation
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, layout, toolbar, R.string.navigation_open, R.string.navigation_close);
-        layout.setDrawerListener(toggle);
+        layout.addDrawerListener(toggle);
         toggle.syncState();
-
-
-        // Set the behaviour of the navigation drawer
-        NavigationView navigation = findViewById(R.id.menu_navigation);
-        navigation.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // Check item as selected
-                        menuItem.setChecked(true);
-                        int id = menuItem.getItemId();
-
-
-
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-                        Intent intent = null;
-
-                        if (id == R.id.menu_gamecenter) {
-                            intent = new Intent(getApplicationContext(), GameCenterActivity.class);
-                        }
-
-                        startActivity(intent);
-
-
-
-                        // Close the menu
-                        layout.closeDrawers();
-                        return true;
-                    }
-                }
-        );
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                layout.openDrawer(GravityCompat.START);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    // Configure the navigation view
+    private void configureNavigationView() {
+        this.navigation = (NavigationView) findViewById(R.id.menu_navigation);
+        navigation.setNavigationItemSelectedListener(this);
     }
 }
