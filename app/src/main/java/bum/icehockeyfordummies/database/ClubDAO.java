@@ -30,7 +30,7 @@ public interface ClubDAO {
 
     // INSERT, UPDATE and DELETE queries
     @Insert
-    int insert(ClubEntity club);
+    long insert(ClubEntity club);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ClubEntity> clubs);

@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 
+//TODO: check which requests are really used
 @Dao
 public interface LeagueDAO {
 
@@ -20,7 +21,7 @@ public interface LeagueDAO {
 
     // INSERT, UPDATE and DELETE queries
     @Insert
-    int insert(LeagueEntity league);
+    long insert(LeagueEntity league);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<LeagueEntity> leagues);

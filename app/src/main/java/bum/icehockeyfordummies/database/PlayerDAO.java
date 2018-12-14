@@ -23,7 +23,7 @@ public interface PlayerDAO {
 
     // INSERT, UPDATE and DELETE queries
     @Insert
-    int insert(PlayerEntity player);
+    long insert(PlayerEntity player);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<PlayerEntity> players);
