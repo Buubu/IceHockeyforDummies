@@ -1,10 +1,10 @@
 package bum.icehockeyfordummies.models;
 
 
-// Model of the League entity
+// Model of the League collection
 public interface League {
-    int getIdLeague();
-    String getNameLeague();
-    String getLogoLeague();
-    boolean getSystemLeague();
+    String getId();
+    String getLogo();
+    String getName();
+    boolean getSystem();
 }

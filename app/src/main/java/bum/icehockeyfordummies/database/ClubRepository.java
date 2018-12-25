@@ -1,21 +1,28 @@
 package bum.icehockeyfordummies.database;
 
 import android.arch.lifecycle.LiveData;
+import android.util.Log;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
+import bum.icehockeyfordummies.firebase.ClubLiveData;
+import bum.icehockeyfordummies.firebase.ClubsLiveData;
 
 
 public class ClubRepository {
+    private static final String TAG = "ClubRepository";
     private static ClubRepository instance;
-    private final AppDatabase database;
 
-    private ClubRepository(final AppDatabase database) { this.database = database; }
+    // Empty constructor
+    private ClubRepository() {}
 
 
-    public static ClubRepository getInstance(final AppDatabase database) {
+    // Retrieve the instance of the repository
+    public static ClubRepository getInstance() {
         if (instance == null) {
             synchronized (ClubRepository.class) {
                 if (instance == null) {
-                    instance = new ClubRepository(database);
+                    instance = new ClubRepository();
                 }
             }
         }
@@ -24,33 +31,101 @@ public class ClubRepository {
     }
 
 
+    // Select a club by its id
+    public LiveData<ClubEntity> getClub(final String id) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clubs")
+                .child(id);
 
-    public LiveData<ClubEntity> getClub(final int idClub) {
-        return database.clubDAO().getClubById(idClub);
+        return new ClubLiveData(reference);
     }
 
-    public LiveData<List<ClubEntity>> getClubs(final int idLeague) {
-        return database.clubDAO().getAllClubsByLeague(idLeague);
-    }
-
+    // Select all clubs
     public LiveData<List<ClubEntity>> getAllClubs() {
-        return database.clubDAO().getAllClubs();
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clubs");
+
+        return new ClubsLiveData(reference, false);
     }
 
-    public LiveData<List<ClubEntity>> getFavorites(final int idLeague) {
-        return database.clubDAO().getAllClubsFavorite(idLeague);
+    // Select all clubs from a league
+    //TODO: if I have the time to do it...
+
+    // Select all favorite clubs
+    public LiveData<List<ClubEntity>> getAllFavorites() {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clubs");
+
+        return new ClubsLiveData(reference, true);
     }
 
 
-    public void insert(final ClubEntity club) {
-        database.clubDAO().insert(club);
+    // Insert a club (includes create the club and add it to a league)
+    public void insert(final ClubEntity club, final LeagueEntity league) {
+
+        // Create a reference for the new club
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clubs");
+        String key = reference.push().getKey();
+
+        // Set the data of the new club
+        FirebaseDatabase.getInstance()
+                .getReference("clubs")
+                .child(key)
+                .setValue(club, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        Log.d(TAG, "Insert failure!", databaseError.toException());
+                    } else {
+                        Log.i(TAG, "Insert successful!");
+                    }
+                });
+
+        // Add this new club into the league
+        FirebaseDatabase.getInstance()
+                .getReference("leagues")
+                .child(league.getId())
+                .child("clubs")
+                .child(key).setValue(true, (databaseError, databaseReference) -> {
+            if (databaseError != null) {
+                Log.d(TAG, "Insert failure!", databaseError.toException());
+            } else {
+                Log.i(TAG, "Insert successful!");
+            }
+        });
     }
 
+
+    // Update a club
     public void update(final ClubEntity club) {
-        database.clubDAO().update(club);
+        FirebaseDatabase.getInstance()
+                .getReference("clubs")
+                .child(club.getId())
+                .updateChildren(club.toMap(), (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        Log.d(TAG, "Update failure!", databaseError.toException());
+                    } else {
+                        Log.d(TAG, "Update successful!");
+                    }
+                });
     }
 
+
+    // Delete a club
+    //TODO: when a club is deleted, all the players related too?
     public void delete(final ClubEntity club) {
-        database.clubDAO().delete(club);
+        FirebaseDatabase.getInstance()
+                .getReference("clubs")
+                .child(club.getId())
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        Log.d(TAG, "Delete failure!", databaseError.toException());
+                    } else {
+                        Log.d(TAG, "Delete successful!");
+                    }
+                });
     }
 }
+
+//    // Delete "all" data: only data added by the user (not the initial data)
+//    @Query("DELETE FROM clubs WHERE club_system = 0")
+//    void deleteAll();

@@ -1,122 +1,110 @@
 package bum.icehockeyfordummies.database;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import com.google.firebase.database.Exclude;
+import java.util.HashMap;
+import java.util.Map;
 import bum.icehockeyfordummies.models.Player;
 
 
-// Declare player entity (linked to one club)
-@Entity(tableName = "players",
-        foreignKeys = @ForeignKey(entity = ClubEntity.class,
-                parentColumns = "club_id",
-                childColumns = "FK_club_id",
-                onUpdate = ForeignKey.CASCADE))
+// Structur of the player document
 public class PlayerEntity implements Player {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "player_id")
-    private int idPlayer;
-
-    @NonNull
-    @ColumnInfo(name = "player_number")
-    private int numberPlayer;
-
-    @NonNull
-    @ColumnInfo(name = "player_firstname")
-    private String firstNamePlayer;
-
-    @NonNull
-    @ColumnInfo(name = "player_lastname")
-    private String lastNamePlayer;
-
-    @NonNull
-    @ColumnInfo(name = "player_birthdate")
-    private int birthdatePlayer;
-
-    @ColumnInfo(name = "player_picture")
-    private String picturePlayer;
-
-    @NonNull
-    @ColumnInfo(name = "player_position")
-    private String positionPlayer;
-
-    @NonNull
-    @ColumnInfo(name = "player_license")
-    private String licensePlayer;
-
-    @ColumnInfo(name = "player_points")
-    private int pointsPlayer;
-
-    @NonNull
-    @ColumnInfo(name = "FK_club_id")
-    private int FK_idClub;
-
-    @NonNull
-    @ColumnInfo(name = "player_system")
-    private boolean systemPlayer;
+    private String id;
+    private int birthdate;
+    private String firstname;
+    private String lastname;
+    private String license;
+    private int number;
+    private String picture;
+    private int points;
+    private String position;
+    private boolean system;
 
 
     // Empty constructor
     public PlayerEntity() {}
 
-    // Constructor using methods
+    // Constructor with methods
     public PlayerEntity(Player player) {
-        idPlayer = player.getIdPlayer();
-        numberPlayer = player.getNumberPlayer();
-        firstNamePlayer = player.getFirstNamePlayer();
-        lastNamePlayer = player.getLastNamePlayer();
-        birthdatePlayer = player.getBirthdatePlayer();
-        picturePlayer = player.getPicturePlayer();
-        positionPlayer = player.getPositionPlayer();
-        licensePlayer = player.getLicensePlayer();
-        pointsPlayer = player.getPointsPlayer();
-        FK_idClub = player.getFK_idClub();
-        systemPlayer = player.getSystemPlayer();
+        birthdate = player.getBirthdate();
+        firstname = player.getFirstname();
+        lastname = player.getLastname();
+        license = player.getLicense();
+        number = player.getNumber();
+        picture = player.getPicture();
+        points = player.getPoints();
+        position = player.getPosition();
+        system = player.getSystem();
     }
 
-    // Constructor using parameters
-    public PlayerEntity(@NonNull int numberPlayer, @NonNull String firstNamePlayer, @NonNull String lastNamePlayer,
-                        @NonNull int birthdatePlayer, String picturePlayer, @NonNull String positionPlayer, @NonNull String licensePlayer,
-                        int pointsPlayer, @NonNull int idClub) {
-        this.numberPlayer = numberPlayer;
-        this.firstNamePlayer = firstNamePlayer;
-        this.lastNamePlayer = lastNamePlayer;
-        this.birthdatePlayer = birthdatePlayer;
-        this.picturePlayer = picturePlayer;
-        this.positionPlayer = positionPlayer;
-        this.licensePlayer = licensePlayer;
-        this.pointsPlayer = pointsPlayer;
-        FK_idClub = idClub;
-        systemPlayer = false;
+    // Constructor with parameters
+    public PlayerEntity(int birthdate, String firstname, String lastname, String license, int number,
+                        String picture, String position) {
+        this.birthdate = birthdate;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.license = license;
+        this.number = number;
+        this.picture = picture;
+        points = 0;
+        this.position = position;
+        system = false;
     }
 
 
     // Getters and setters
-    public int getIdPlayer() { return idPlayer; }
-    public int getNumberPlayer() { return numberPlayer; }
-    @NonNull public String getFirstNamePlayer() { return firstNamePlayer; }
-    @NonNull public String getLastNamePlayer() { return lastNamePlayer; }
-    public int getBirthdatePlayer() { return birthdatePlayer; }
-    public String getPicturePlayer() { return picturePlayer; }
-    @NonNull public String getPositionPlayer() { return positionPlayer; }
-    @NonNull public String getLicensePlayer() { return licensePlayer; }
-    public int getPointsPlayer() { return pointsPlayer; }
-    public int getFK_idClub() { return FK_idClub; }
-    public boolean getSystemPlayer() { return systemPlayer; }
+    @Exclude
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setIdPlayer(int idPlayer) { this.idPlayer = idPlayer; }
-    public void setNumberPlayer(int numberPlayer) { this.numberPlayer = numberPlayer; }
-    public void setFirstNamePlayer(@NonNull String firstNamePlayer) { this.firstNamePlayer = firstNamePlayer; }
-    public void setLastNamePlayer(@NonNull String lastNamePlayer) { this.lastNamePlayer = lastNamePlayer; }
-    public void setBirthdatePlayer(int birthdatePlayer) { this.birthdatePlayer = birthdatePlayer; }
-    public void setPicturePlayer(String picturePlayer) { this.picturePlayer = picturePlayer; }
-    public void setPositionPlayer(@NonNull String positionPlayer) { this.positionPlayer = positionPlayer; }
-    public void setLicensePlayer(@NonNull String licensePlayer) { this.licensePlayer = licensePlayer; }
-    public void setPointsPlayer(int pointsPlayer) { this.pointsPlayer = pointsPlayer; }
-    public void setFK_idClub(int idClub) { FK_idClub = idClub; }
-    public void setSystemPlayer(boolean systemPlayer) { this.systemPlayer = systemPlayer; }
+    public int getBirthdate() { return birthdate; }
+    public void setBirthdate(int birthdate) { this.birthdate = birthdate; }
+
+    public String getFirstname() { return firstname; }
+    public void setFirstname(String firstname) { this.firstname = firstname; }
+
+    public String getLastname() { return lastname; }
+    public void setLastname(String lastname) { this.lastname = lastname; }
+
+    public String getLicense() { return license; }
+    public void setLicense(String license) { this.license = license; }
+
+    public int getNumber() { return number; }
+    public void setNumber(int number) { this.number = number; }
+
+    public String getPicture() { return picture; }
+    public void setPicture(String picture) { this.picture = picture; }
+
+    public int getPoints() { return points; }
+    public void setPoints(int points) { this.points = points; }
+
+    public String getPosition() { return position; }
+    public void setPosition(String position) { this.position = position; }
+
+    public boolean getSystem() { return system; }
+    public void setSystem(boolean system) { this.system = system; }
+
+
+    // Player to String
+    public String toString() {
+        return firstname + " " + lastname;
+    }
+
+
+    // Map the data
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> data = new HashMap<>();
+
+        data.put("birthdate", birthdate);
+        data.put("firstname", firstname);
+        data.put("lastname", lastname);
+        data.put("license", license);
+        data.put("number", number);
+        data.put("picture", picture);
+        data.put("points", points);
+        data.put("position", position);
+        data.put("system", system);
+
+        return data;
+    }
 }

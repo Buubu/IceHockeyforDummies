@@ -1,83 +1,68 @@
 package bum.icehockeyfordummies.database;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import com.google.firebase.database.Exclude;
+import java.util.HashMap;
+import java.util.Map;
 import bum.icehockeyfordummies.models.Club;
 
 
-// Declare club entity (linked to one league)
-@Entity(tableName = "clubs", indices = {@Index(value = "club_name", unique = true)},
-        foreignKeys = @ForeignKey(entity = LeagueEntity.class,
-                parentColumns = "league_id",
-                childColumns = "FK_league_id",
-                onUpdate = ForeignKey.CASCADE)
-)
+// Structure of the club document
 public class ClubEntity implements Club {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "club_id")
-    private int idClub;
-
-    @NonNull
-    @ColumnInfo(name = "club_name")
-    private String nameClub;
-
-    @ColumnInfo(name = "club_logo")
-    private String logoClub;
-
-    @NonNull
-    @ColumnInfo(name = "FK_league_id")
-    private int FK_idLeague;
-
-    @NonNull
-    @ColumnInfo(name = "club_system")
-    private boolean systemClub;
-
-    @NonNull
-    @ColumnInfo(name = "club_favorite")
-    private boolean favoriteClub;
+    private String id;
+    private boolean favorite;
+    private String logo;
+    private String name;
+    private boolean system;
 
 
     // Empty constructor
     public ClubEntity() {}
 
-    // Constructor using methods
+    // Constructor with methods
     public ClubEntity(Club club) {
-        idClub = club.getIdClub();
-        nameClub = club.getNameClub();
-        logoClub = club.getLogoClub();
-        FK_idLeague = club.getFK_idLeague();
-        systemClub = club.getSystemClub();
-        favoriteClub = club.getFavoriteClub();
+        favorite = club.getFavorite();
+        logo = club.getLogo();
+        name = club.getName();
+        system = club.getSystem();
     }
 
-    // Constructor using parameters
-    public ClubEntity(@NonNull String nameClub, String logoClub, int idLeague) {
-        this.nameClub = nameClub;
-        this.logoClub = logoClub;
-        FK_idLeague = idLeague;
-        systemClub = false;
-        favoriteClub = false;
+    // Constructor with parameters
+    public ClubEntity(String logo, String name) {
+        favorite = false;
+        this.logo = logo;
+        this.name = name;
+        system = false;
     }
 
 
     // Getters and setters
-    public int getIdClub() { return idClub; }
-    @NonNull public String getNameClub() { return nameClub; }
-    public String getLogoClub() { return logoClub; }
-    public int getFK_idLeague() { return FK_idLeague; }
-    public boolean getSystemClub() { return systemClub; }
-    public boolean getFavoriteClub() { return favoriteClub; }
+    @Exclude
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setIdClub(int idClub) { this.idClub = idClub; }
-    public void setNameClub(@NonNull String nameClub) { this.nameClub = nameClub; }
-    public void setLogoClub(String logoClub) { this.logoClub = logoClub; }
-    public void setFK_idLeague(int idLeague) {FK_idLeague = idLeague; }
-    public void setSystemClub(boolean systemClub) { this.systemClub = systemClub; }
-    public void setFavoriteClub(boolean favoriteClub) {this.favoriteClub = favoriteClub; }
+    public boolean getFavorite() { return favorite; }
+    public void setFavorite(boolean favorite) { this.favorite = favorite; }
+
+    public String getLogo() { return logo; }
+    public void setLogo(String logo) { this.logo = logo; }
+
+    public String getName() { return logo; }
+    public void setName(String name) { this.name = name; }
+
+    public boolean getSystem() { return system; }
+    public void setSystem(boolean system) { this.system = system; }
+
+
+    // Map the data
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> data = new HashMap<>();
+
+        data.put("favorite", favorite);
+        data.put("logo", logo);
+        data.put("name", name);
+        data.put("system", system);
+
+        return data;
+    }
 }

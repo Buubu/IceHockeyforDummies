@@ -1,12 +1,11 @@
 package bum.icehockeyfordummies.models;
 
 
-// Model of the Club entity
+// Model of the Club collection
 public interface Club {
-    int getIdClub();
-    String getNameClub();
-    String getLogoClub();
-    int getFK_idLeague();
-    boolean getSystemClub();
-    boolean getFavoriteClub();
+    String getId();
+    boolean getFavorite();
+    String getLogo();
+    String getName();
+    boolean getSystem();
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "641560540751",
+    "firebase_url": "https://icehockeyfordummies.firebaseio.com",
+    "project_id": "icehockeyfordummies",
+    "storage_bucket": "icehockeyfordummies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641560540751:android:3917c2c57f7c2bc9",
+        "android_client_info": {
+          "package_name": "bum.icehockeyfordummies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641560540751-bvoj6qnsdedttoalit573khd865pobrp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bum.icehockeyfordummies",
+            "certificate_hash": "71fe6d641ef33a961ee260cd20a2f7a518cba4a3"
+          }
+        },
+        {
+          "client_id": "641560540751-b4c308qc8j7hfhnkcuo6jcu0lagkmi3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYv12pKYSDrkLxInRH2EZov_W8XwJX7UY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641560540751-b4c308qc8j7hfhnkcuo6jcu0lagkmi3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

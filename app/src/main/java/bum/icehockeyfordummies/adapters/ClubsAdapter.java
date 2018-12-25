@@ -8,40 +8,23 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.List;
 import bum.icehockeyfordummies.R;
+import bum.icehockeyfordummies.database.ClubEntity;
 
 
 public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder> {
 
-    public ClubsHolder onCreateViewHolder(ViewGroup parent, int i) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ClubsHolder(inflater, parent);
-    }
-
-    
-    // Set the correct data to each card in the view
-    public void onBindViewHolder(ClubsHolder recyclerViewHolder, int position) {
-
-        // SET THE VALUE OF EACH
-        //recyclerViewHolder.clubLogo
-        //recyclerViewHolder.clubName.setText(clubs.get(position).getNameClub());
-        //recyclerViewHolder.clubFavorite
-    }
-
-
-    // Number of cards to show (related to the number of clubs)
-    public int getItemCount() {
-        return 5;
-    }
+    private List<ClubEntity> data;
+    private ClubItemClickListener listener;
 
 
     // Class ClubsHolder
-    class ClubsHolder extends RecyclerView.ViewHolder {
+    static class ClubsHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private ImageView clubLogo;
         private TextView clubName;
         private ImageButton clubFavorite;
-
 
         public ClubsHolder(View itemView) {
             super(itemView);
@@ -55,5 +38,58 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder>
             clubName = itemView.findViewById(R.id.club_name);
             clubFavorite = itemView.findViewById(R.id.club_favorite);
         }
+    }
+
+
+    public ClubsAdapter(ClubItemClickListener listener) {
+        this.listener = listener;
+    }
+
+
+    public ClubsAdapter.ClubsHolder onCreateViewHolder(ViewGroup parent, int type) {
+        View view = (View) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.items_clubs, parent, false);
+
+        final ClubsHolder holder = new ClubsHolder(view);
+        view.setOnClickListener(v -> listener.onItemClick(view, holder.getAdapterPosition()));
+        view.setOnLongClickListener(v -> {
+            listener.onItemLongClick(view, holder.getAdapterPosition());
+            return true;
+        });
+
+        return holder;
+    }
+
+
+    public void onBindViewHolder(ClubsAdapter.ClubsHolder holder, int position) {
+        ClubEntity item = data.get(position);
+
+
+        // SET THE VALUE OF EACH
+
+        // Set the correct data to each card in the view
+        holder.clubName.setText(item.getNameClub());
+
+        //recyclerViewHolder.clubLogo
+        //recyclerViewHolder.clubName.setText(clubs.get(position).getNameClub());
+        //recyclerViewHolder.clubFavorite
+
+
+    }
+
+
+    // Number of cards to show (related to the number of clubs)
+    public int getItemCount() {
+        if (data != null) {
+            return data.size();
+        } else {
+            return 0;
+        }
+    }
+
+
+    // Set the data
+    public void setData(final List<ClubEntity> clubs) {
+        data = clubs;
     }
 }

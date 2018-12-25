@@ -1,60 +1,61 @@
 package bum.icehockeyfordummies.database;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import com.google.firebase.database.Exclude;
+import java.util.HashMap;
+import java.util.Map;
 import bum.icehockeyfordummies.models.League;
 
 
-// Declare league entity
-@Entity(tableName = "leagues")
+// Structure of the league document
 public class LeagueEntity implements League {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "league_id")
-    private int idLeague;
-
-    @NonNull
-    @ColumnInfo(name = "league_name")
-    private String nameLeague;
-
-    @ColumnInfo(name = "league_logo")
-    private String logoLeague;
-
-    @NonNull
-    @ColumnInfo(name = "league_system")
-    private boolean systemLeague;
+    private String id;
+    private String logo;
+    private String name;
+    private boolean system;
 
 
     // Empty constructor
     public LeagueEntity() {}
 
-    // Constructor using parameters
-    public LeagueEntity(@NonNull String nameLeague, String logoLeague) {
-        this.nameLeague = nameLeague;
-        this.logoLeague = logoLeague;
-        systemLeague = false;
+    // Constructor with methods
+    public LeagueEntity(League league) {
+        logo = league.getLogo();
+        name = league.getName();
+        system = league.getSystem();
     }
 
-    // Constructor using methods
-    public LeagueEntity(League league) {
-        idLeague = league.getIdLeague();
-        nameLeague = league.getNameLeague();
-        logoLeague = league.getLogoLeague();
-        systemLeague = league.getSystemLeague();
+    // Constructor with parameters
+    public LeagueEntity(String logo, String name) {
+        this.logo = logo;
+        this.name = name;
+        system = false;
     }
 
 
     // Getters and setters
-    public int getIdLeague() { return idLeague; }
-    @NonNull public String getNameLeague() { return nameLeague; }
-    public String getLogoLeague() { return logoLeague; }
-    public boolean getSystemLeague() { return systemLeague; }
+    @Exclude
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setIdLeague(int idLeague) { this.idLeague = idLeague; } //TODO: used?
-    public void setNameLeague(@NonNull String nameLeague) { this.nameLeague = nameLeague; }
-    public void setLogoLeague(String logoLeague) { this.logoLeague = logoLeague; }
-    public void setSystemLeague(boolean systemLeague) { this.systemLeague = systemLeague; }
+    public String getLogo() { return logo; }
+    public void setLogo(String logo) { this.logo = logo; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public boolean getSystem() { return system; }
+    public void setSystem(boolean system) { this.system = system; }
+
+
+    // Map the data
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> data = new HashMap<>();
+
+        data.put("logo", logo);
+        data.put("name", name);
+        data.put("system", system);
+
+        return data;
+    }
 }
