@@ -8,32 +8,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    tools:context="bum.icehockeyfordummies.user_interface.MainActivity">
+    tools:openDrawer="start">
 
-
-    <!-- Define the layout of the screen (the menu slides over it) -->
-    <LinearLayout
+    <!-- Add the toolbar on the screen -->
+    <include
+        layout="@layout/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <!-- Add the toolbar on the screen -->
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:theme="@style/ToolbarStyle" />
-
-
-        <!-- The FrameLayout is the container of the screens -->
-        <FrameLayout
-            android:id="@+id/screen_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
+        android:layout_height="match_parent" />
 
     <!-- Define the contents of the menu -->
     <android.support.design.widget.NavigationView

@@ -9,6 +9,7 @@ import bum.icehockeyfordummies.models.League;
 // Structure of the league document
 public class LeagueEntity implements League {
     private String id;
+    private Map<String, Boolean> clubs;
     private String logo;
     private String name;
     private boolean system;
@@ -19,6 +20,7 @@ public class LeagueEntity implements League {
 
     // Constructor with methods
     public LeagueEntity(League league) {
+        clubs = league.getClubs();
         logo = league.getLogo();
         name = league.getName();
         system = league.getSystem();
@@ -37,6 +39,9 @@ public class LeagueEntity implements League {
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
+    public Map<String, Boolean> getClubs() { return clubs; }
+    public void setClubs(Map<String, Boolean> clubs) { this.clubs = clubs; }
+
     public String getLogo() { return logo; }
     public void setLogo(String logo) { this.logo = logo; }
 
@@ -52,6 +57,7 @@ public class LeagueEntity implements League {
     public Map<String, Object> toMap() {
         HashMap<String, Object> data = new HashMap<>();
 
+        data.put("clubs", clubs);
         data.put("logo", logo);
         data.put("name", name);
         data.put("system", system);

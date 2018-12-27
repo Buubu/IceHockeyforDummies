@@ -12,6 +12,7 @@ public class ClubEntity implements Club {
     private boolean favorite;
     private String logo;
     private String name;
+    private Map<String, Boolean> players;
     private boolean system;
 
 
@@ -23,6 +24,7 @@ public class ClubEntity implements Club {
         favorite = club.getFavorite();
         logo = club.getLogo();
         name = club.getName();
+        players = club.getPlayers();
         system = club.getSystem();
     }
 
@@ -46,8 +48,11 @@ public class ClubEntity implements Club {
     public String getLogo() { return logo; }
     public void setLogo(String logo) { this.logo = logo; }
 
-    public String getName() { return logo; }
+    public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
+    public Map<String, Boolean> getPlayers() { return players; }
+    public void setPlayers(Map<String, Boolean> players) { this.players = players; }
 
     public boolean getSystem() { return system; }
     public void setSystem(boolean system) { this.system = system; }
@@ -61,6 +66,7 @@ public class ClubEntity implements Club {
         data.put("favorite", favorite);
         data.put("logo", logo);
         data.put("name", name);
+        data.put("players", players);
         data.put("system", system);
 
         return data;

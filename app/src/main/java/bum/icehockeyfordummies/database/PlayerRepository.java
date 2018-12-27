@@ -76,13 +76,14 @@ public class PlayerRepository {
                 .getReference("clubs")
                 .child(club.getId())
                 .child("players")
-                .child(key).setValue(true, (databaseError, databaseReference) -> {
-            if (databaseError != null) {
-                Log.d(TAG, "Insert failure!", databaseError.toException());
-            } else {
-                Log.i(TAG, "Insert successful!");
-            }
-        });
+                .child(key)
+                .setValue(true, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        Log.d(TAG, "Insert failure!", databaseError.toException());
+                    } else {
+                        Log.i(TAG, "Insert successful!");
+                    }
+                });
     }
 
 
@@ -98,7 +99,6 @@ public class PlayerRepository {
                         Log.d(TAG, "Update successful!");
                     }
                 });
-
     }
 
 

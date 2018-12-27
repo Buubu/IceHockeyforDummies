@@ -26,7 +26,7 @@ public class ClubsLiveData extends LiveData<List<ClubEntity>> {
         if (!this.isFavoriteList) {
             listener = new ClubsListener();
         } else {
-            listener = new FavoriteListener();
+            listener = new FavoritesListener();
         }
     }
 
@@ -54,7 +54,7 @@ public class ClubsLiveData extends LiveData<List<ClubEntity>> {
     }
 
     // Listener for the favorites
-    private class FavoriteListener implements ValueEventListener {
+    private class FavoritesListener implements ValueEventListener {
         public void onDataChange(DataSnapshot snapshot) {
             setValue(toFavorites(snapshot));
         }

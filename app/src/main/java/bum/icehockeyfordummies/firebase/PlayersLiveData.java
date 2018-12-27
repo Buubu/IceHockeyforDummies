@@ -14,7 +14,7 @@ import bum.icehockeyfordummies.database.PlayerEntity;
 public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
     private static final String TAG = "PlayersLiveData";
     private final DatabaseReference reference;
-    private final PlayersLiveData.PlayersListener listener = new PlayersLiveData.PlayersListener();
+    private final PlayersListener listener = new PlayersListener();
 
     // Constructor
     public PlayersLiveData(DatabaseReference reference) {

@@ -62,13 +62,13 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder>
 
 
     public void onBindViewHolder(ClubsAdapter.ClubsHolder holder, int position) {
-        ClubEntity item = data.get(position);
+//        ClubEntity item = data.get(position);
 
 
         // SET THE VALUE OF EACH
 
         // Set the correct data to each card in the view
-        holder.clubName.setText(item.getNameClub());
+//        holder.clubName.setText(item.getName());
 
         //recyclerViewHolder.clubLogo
         //recyclerViewHolder.clubName.setText(clubs.get(position).getNameClub());
@@ -80,11 +80,12 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder>
 
     // Number of cards to show (related to the number of clubs)
     public int getItemCount() {
-        if (data != null) {
-            return data.size();
-        } else {
-            return 0;
-        }
+        return 5;
+//        if (data != null) {
+//            return data.size();
+//        } else {
+//            return 0;
+//        }
     }
 
 
