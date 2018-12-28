@@ -3,7 +3,6 @@
     <!-- All itmes of the navigation menu -->
     <group android:checkableBehavior="single">
 
-        <!-- TODO: test the look of the font and change it if needed -->
         <!-- The "Game Center" item is automatically checked -->
         <item
             android:id="@+id/menu_gamecenter"

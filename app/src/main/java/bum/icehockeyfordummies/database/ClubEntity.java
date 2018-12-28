@@ -21,6 +21,7 @@ public class ClubEntity implements Club {
 
     // Constructor with methods
     public ClubEntity(Club club) {
+        id = club.getId();
         favorite = club.getFavorite();
         logo = club.getLogo();
         name = club.getName();

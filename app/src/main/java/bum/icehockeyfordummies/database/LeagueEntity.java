@@ -20,6 +20,7 @@ public class LeagueEntity implements League {
 
     // Constructor with methods
     public LeagueEntity(League league) {
+        id = league.getId();
         clubs = league.getClubs();
         logo = league.getLogo();
         name = league.getName();

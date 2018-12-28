@@ -10,12 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".user_interface.MainActivity"
-            android:parentActivityName=".user_interface.GameCenterActivity">
-        </activity>
+        <activity
+            android:name=".user_interface.MainActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
         <activity android:name=".user_interface.GameCenterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,6 +26,7 @@
         <activity android:name=".user_interface.SettingsActivity" />
         <activity android:name=".user_interface.SLActivity" />
         <activity android:name=".user_interface.ClubsActivity" />
+        <activity android:name=".user_interface.ClubActivity"></activity>
     </application>
 
 </manifest>

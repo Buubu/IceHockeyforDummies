@@ -25,6 +25,7 @@ public class PlayerEntity implements Player {
 
     // Constructor with methods
     public PlayerEntity(Player player) {
+        id = player.getId();
         birthdate = player.getBirthdate();
         firstname = player.getFirstname();
         lastname = player.getLastname();

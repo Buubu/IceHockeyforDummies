@@ -57,7 +57,7 @@ NavigationView.OnNavigationItemSelectedListener {
 
     // Configure the navigation view
     private void configureNavigationView() {
-        this.navigation = (NavigationView) findViewById(R.id.menu_navigation);
+        this.navigation = findViewById(R.id.menu_navigation);
         navigation.setNavigationItemSelectedListener(this);
     }
 
@@ -111,12 +111,18 @@ NavigationView.OnNavigationItemSelectedListener {
             case R.id.menu_settings:
                 intent = new Intent(this, SettingsActivity.class);
                 break;
-            default:
-                break;
         }
 
+        // Open the new activity
+        if (intent != null) {
+            intent.setFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_NO_ANIMATION
+            );
+            startActivity(intent);
+        }
         this.layout.closeDrawer(GravityCompat.START);
-        startActivity(intent);
         return true;
     }
 }

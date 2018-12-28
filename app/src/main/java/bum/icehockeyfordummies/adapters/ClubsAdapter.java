@@ -1,37 +1,33 @@
 package bum.icehockeyfordummies.adapters;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
+import java.util.Objects;
 import bum.icehockeyfordummies.R;
 import bum.icehockeyfordummies.database.ClubEntity;
 
 
 public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder> {
-
     private List<ClubEntity> data;
     private ClubItemClickListener listener;
 
 
     // Class ClubsHolder
-    static class ClubsHolder extends RecyclerView.ViewHolder {
+    public class ClubsHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private ImageView clubLogo;
         private TextView clubName;
-        private ImageButton clubFavorite;
+        private ImageView clubFavorite;
 
         public ClubsHolder(View itemView) {
             super(itemView);
-        }
-
-        public ClubsHolder(LayoutInflater inflater, ViewGroup container) {
-            super(inflater.inflate(R.layout.items_clubs, container, false));
 
             cardView = itemView.findViewById(R.id.cardview);
             clubLogo = itemView.findViewById(R.id.club_logo);
@@ -41,56 +37,88 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder>
     }
 
 
+    // Define the adapter
     public ClubsAdapter(ClubItemClickListener listener) {
         this.listener = listener;
     }
 
-
     public ClubsAdapter.ClubsHolder onCreateViewHolder(ViewGroup parent, int type) {
-        View view = (View) LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.items_clubs, parent, false);
 
         final ClubsHolder holder = new ClubsHolder(view);
         view.setOnClickListener(v -> listener.onItemClick(view, holder.getAdapterPosition()));
-        view.setOnLongClickListener(v -> {
-            listener.onItemLongClick(view, holder.getAdapterPosition());
-            return true;
-        });
 
         return holder;
     }
 
 
+    // Set the values of each club
     public void onBindViewHolder(ClubsAdapter.ClubsHolder holder, int position) {
-//        ClubEntity item = data.get(position);
+        ClubEntity item = data.get(position);
 
-
-        // SET THE VALUE OF EACH
+        // Set the logo of each club
+        String picture = item.getLogo();
+        picture = picture.substring(0, picture.indexOf("."));
+        int id = holder.itemView.getResources().getIdentifier(picture, "drawable", holder.itemView.getContext().getPackageName());
+        holder.clubLogo.setImageResource(id);
 
         // Set the correct data to each card in the view
-//        holder.clubName.setText(item.getName());
+        holder.clubName.setText(item.getName());
 
-        //recyclerViewHolder.clubLogo
-        //recyclerViewHolder.clubName.setText(clubs.get(position).getNameClub());
-        //recyclerViewHolder.clubFavorite
+        // Set the favorite star of each club
+        boolean favorite = item.getFavorite();
 
-
+        if (favorite) {
+            holder.clubFavorite.setImageResource(R.drawable.ic_favorite);
+        } else {
+            holder.clubFavorite.setImageResource(R.drawable.ic_notfavorite);
+        }
     }
 
 
     // Number of cards to show (related to the number of clubs)
     public int getItemCount() {
-        return 5;
-//        if (data != null) {
-//            return data.size();
-//        } else {
-//            return 0;
-//        }
+        if (data != null) {
+            return data.size();
+        } else {
+            return 0;
+        }
     }
 
 
     // Set the data
     public void setData(final List<ClubEntity> clubs) {
-        data = clubs;
+        if (data == null) {
+            data = clubs;
+            notifyItemRangeInserted(0, clubs.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+
+                // Overrided methods
+                public int getOldListSize() {
+                    return data.size();
+                }
+
+                public int getNewListSize() {
+                    return clubs.size();
+                }
+
+                public boolean areItemsTheSame(int oldPos, int newPos) {
+                    return data.get(oldPos).getId().equals(clubs.get(newPos).getId());
+                }
+
+                public boolean areContentsTheSame(int oldPos, int newPos) {
+                    ClubEntity newClub = clubs.get(newPos);
+                    ClubEntity oldClub = data.get(newPos);
+
+                    return newClub.getId().equals(oldClub.getId())
+                            && Objects.equals(newClub.getName(), oldClub.getName());
+                }
+            });
+
+            data = clubs;
+            result.dispatchUpdatesTo(this);
+        }
     }
 }
