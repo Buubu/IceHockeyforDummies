@@ -1,5 +1,6 @@
 package bum.icehockeyfordummies.adapters;
 
+import android.graphics.Color;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,12 +22,14 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.PlayersH
     public class PlayersHolder extends RecyclerView.ViewHolder {
         private TextView playerNumber;
         private TextView playerName;
+        private View row;
 
         public PlayersHolder(View itemView) {
             super(itemView);
 
             playerNumber = itemView.findViewById(R.id.clubpage_pnumber);
             playerName = itemView.findViewById(R.id.clubpage_pname);
+            row = itemView.findViewById(R.id.row);
         }
     }
 
@@ -58,6 +61,11 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.PlayersH
         // Set the name of each player
         String name = item.toString();
         holder.playerName.setText(name);
+
+        // Set the color of the row
+        if (position%2 == 1) {
+            holder.row.setBackgroundColor(Color.WHITE);
+        }
     }
 
 

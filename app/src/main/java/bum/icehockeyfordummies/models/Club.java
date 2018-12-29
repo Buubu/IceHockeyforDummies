@@ -7,6 +7,7 @@ import java.util.Map;
 public interface Club {
     String getId();
     boolean getFavorite();
+    Map<String, Boolean> getLeagues();
     String getLogo();
     String getName();
     Map<String, Boolean> getPlayers();

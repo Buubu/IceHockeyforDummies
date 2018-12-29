@@ -1,10 +1,13 @@
 package bum.icehockeyfordummies.models;
 
+import java.util.Map;
+
 
 // Model of the Player collection
 public interface Player {
     String getId();
     int getBirthdate();
+    Map<String, Boolean> getClubs();
     String getFirstname();
     String getLastname();
     String getLicense();

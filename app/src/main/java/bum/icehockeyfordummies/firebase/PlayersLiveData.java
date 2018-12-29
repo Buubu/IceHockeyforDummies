@@ -9,6 +9,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import bum.icehockeyfordummies.database.PlayerEntity;
 
 
@@ -16,10 +18,12 @@ public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
     private static final String TAG = "PlayersLiveData";
     private final DatabaseReference reference;
     private final PlayersListener listener = new PlayersListener();
+    private final String idClub;
 
     // Constructor
-    public PlayersLiveData(DatabaseReference reference) {
+    public PlayersLiveData(DatabaseReference reference, String club) {
         this.reference = reference;
+        idClub = club;
     }
 
 
@@ -36,10 +40,7 @@ public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
 
     // Listener for the list of players
     private class PlayersListener implements ValueEventListener {
-        public void onDataChange(DataSnapshot snapshot) {
-           // setValue(toPlayers(snapshot));
-            toPlayers(snapshot);
-        }
+        public void onDataChange(DataSnapshot snapshot) { setValue(toPlayers(snapshot)); }
 
         public void onCancelled(DatabaseError error) {
             Log.e(TAG, "Can't listen to the query " + reference, error.toException());
@@ -48,38 +49,28 @@ public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
 
 
     // Returns the list of players
-    private void /*List<PlayerEntity>*/ toPlayers(DataSnapshot snapshot) {
+    private List<PlayerEntity> toPlayers(DataSnapshot snapshot) {
+        List<PlayerEntity> ref = new ArrayList<>();
         List<PlayerEntity> players = new ArrayList<>();
 
         for (DataSnapshot child : snapshot.getChildren()) {
-            String id = child.getKey();
-
-            DatabaseReference ref = FirebaseDatabase.getInstance()
-                    .getReference("players")
-                    .child(id);
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    PlayerEntity player = snapshot.getValue(PlayerEntity.class);
-                    player.setId(snapshot.getKey());
-                    players.add(player);
-
-                    // PRESQUE !
-                    setValue(players);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {}
-            });
+            PlayerEntity player = child.getValue(PlayerEntity.class);
+            player.setId(child.getKey());
+            ref.add(player);
         }
 
-        setValue(players);
+        for (int item=0; item<ref.size(); item++) {
+            Map<String, Boolean> clubs = ref.get(item).getClubs();
 
-        //TEST
-//        for (int i=0; i<players.size(); i++) {
-//            Log.d(TAG, players.get(i).toString());
-//        }
-//        //TEST
-//        return players;
+
+
+            for (Object club : clubs.keySet()) {
+                if (club.equals(idClub)) {
+                    players.add(ref.get(item));
+                }
+            }
+        }
+
+        return players;
     }
 }

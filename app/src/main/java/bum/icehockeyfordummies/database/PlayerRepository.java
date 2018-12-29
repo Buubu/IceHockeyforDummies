@@ -43,11 +43,9 @@ public class PlayerRepository {
     // Select all players from a club
     public LiveData<List<PlayerEntity>> getAllPlayers(final String club) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clubs")
-                .child(club)
-                .child("players");
+                .getReference("players");
 
-        return new PlayersLiveData(reference);
+        return new PlayersLiveData(reference, club);
     }
 
 

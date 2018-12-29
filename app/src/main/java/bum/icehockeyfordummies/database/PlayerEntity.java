@@ -10,6 +10,7 @@ import bum.icehockeyfordummies.models.Player;
 public class PlayerEntity implements Player {
     private String id;
     private int birthdate;
+    private Map<String, Boolean> clubs;
     private String firstname;
     private String lastname;
     private String license;
@@ -27,6 +28,7 @@ public class PlayerEntity implements Player {
     public PlayerEntity(Player player) {
         id = player.getId();
         birthdate = player.getBirthdate();
+        clubs = player.getClubs();
         firstname = player.getFirstname();
         lastname = player.getLastname();
         license = player.getLicense();
@@ -39,7 +41,7 @@ public class PlayerEntity implements Player {
 
     // Constructor with parameters
     public PlayerEntity(int birthdate, String firstname, String lastname, String license, int number,
-                        String picture, String position) {
+                        String picture, String position, ClubEntity club) {
         this.birthdate = birthdate;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -49,6 +51,9 @@ public class PlayerEntity implements Player {
         points = 0;
         this.position = position;
         system = false;
+
+        String id = club.getId();
+        clubs.put(id, true);
     }
 
 
@@ -59,6 +64,9 @@ public class PlayerEntity implements Player {
 
     public int getBirthdate() { return birthdate; }
     public void setBirthdate(int birthdate) { this.birthdate = birthdate; }
+
+    public Map<String, Boolean> getClubs() { return clubs; }
+    public void setClubs(Map<String, Boolean> clubs) { this.clubs = clubs; }
 
     public String getFirstname() { return firstname; }
     public void setFirstname(String firstname) { this.firstname = firstname; }
@@ -97,6 +105,7 @@ public class PlayerEntity implements Player {
         HashMap<String, Object> data = new HashMap<>();
 
         data.put("birthdate", birthdate);
+        data.put("clubs", clubs);
         data.put("firstname", firstname);
         data.put("lastname", lastname);
         data.put("license", license);
