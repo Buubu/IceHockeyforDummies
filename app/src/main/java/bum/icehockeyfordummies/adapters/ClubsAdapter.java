@@ -16,12 +16,11 @@ import bum.icehockeyfordummies.database.ClubEntity;
 
 public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder> {
     private List<ClubEntity> data;
-    private ClubItemClickListener listener;
+    private ItemClickListener listener;
 
 
     // Class ClubsHolder
     public class ClubsHolder extends RecyclerView.ViewHolder {
-        private CardView cardView;
         private ImageView clubLogo;
         private TextView clubName;
         private ImageView clubFavorite;
@@ -29,7 +28,6 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder>
         public ClubsHolder(View itemView) {
             super(itemView);
 
-            cardView = itemView.findViewById(R.id.cardview);
             clubLogo = itemView.findViewById(R.id.club_logo);
             clubName = itemView.findViewById(R.id.club_name);
             clubFavorite = itemView.findViewById(R.id.club_favorite);
@@ -38,7 +36,7 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsHolder>
 
 
     // Define the adapter
-    public ClubsAdapter(ClubItemClickListener listener) {
+    public ClubsAdapter(ItemClickListener listener) {
         this.listener = listener;
     }
 

@@ -4,14 +4,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-
     <!-- General strings of the app -->
     <string name="navigation_open">Open navigation drawer</string>
     <string name="navigation_close">Close navigation drawer</string>
 
-
-    <!-- Other values -->
-    <string name="players">PLAYERS</string>
+    <!-- Values of the menu -->
     <string name="app_name">Ice Hockey for Dummies</string>
     <string name="gamecenter">Game Center</string>
     <string name="nationalleague">National League</string>
@@ -20,4 +17,10 @@
     <string name="regioleague">Regio League / Elite</string>
     <string name="clubs">Clubs</string>
     <string name="settings">Settings</string>
+
+    <!-- Club page values -->
+    <string name="players">PLAYERS</string>
+    <string name="player_number">#00</string>
+    <string name="player_name">Player Player</string>
+
 </resources>

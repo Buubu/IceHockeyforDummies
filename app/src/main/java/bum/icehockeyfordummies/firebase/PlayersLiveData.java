@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,8 @@ public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
     // Listener for the list of players
     private class PlayersListener implements ValueEventListener {
         public void onDataChange(DataSnapshot snapshot) {
-            setValue(toPlayers(snapshot));
+           // setValue(toPlayers(snapshot));
+            toPlayers(snapshot);
         }
 
         public void onCancelled(DatabaseError error) {
@@ -46,15 +48,38 @@ public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
 
 
     // Returns the list of players
-    private List<PlayerEntity> toPlayers(DataSnapshot snapshot) {
+    private void /*List<PlayerEntity>*/ toPlayers(DataSnapshot snapshot) {
         List<PlayerEntity> players = new ArrayList<>();
 
         for (DataSnapshot child : snapshot.getChildren()) {
-            PlayerEntity player = child.getValue(PlayerEntity.class);
-            player.setId(child.getKey());
-            players.add(player);
+            String id = child.getKey();
+
+            DatabaseReference ref = FirebaseDatabase.getInstance()
+                    .getReference("players")
+                    .child(id);
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    PlayerEntity player = snapshot.getValue(PlayerEntity.class);
+                    player.setId(snapshot.getKey());
+                    players.add(player);
+
+                    // PRESQUE !
+                    setValue(players);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {}
+            });
         }
 
-        return players;
+        setValue(players);
+
+        //TEST
+//        for (int i=0; i<players.size(); i++) {
+//            Log.d(TAG, players.get(i).toString());
+//        }
+//        //TEST
+//        return players;
     }
 }

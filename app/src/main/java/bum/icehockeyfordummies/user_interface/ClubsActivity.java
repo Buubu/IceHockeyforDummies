@@ -12,7 +12,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import bum.icehockeyfordummies.R;
-import bum.icehockeyfordummies.adapters.ClubItemClickListener;
+import bum.icehockeyfordummies.adapters.ItemClickListener;
 import bum.icehockeyfordummies.adapters.ClubsAdapter;
 import bum.icehockeyfordummies.database.ClubEntity;
 import bum.icehockeyfordummies.viewmodels.ClubsListViewModel;
@@ -27,7 +27,7 @@ public class ClubsActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Set the Game center when checked
+        // Set the Clubs page when checked
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_clubs, screen);
         setTitle(R.string.clubs);
@@ -40,13 +40,13 @@ public class ClubsActivity extends MainActivity {
 
 
         clubs = new ArrayList<>();
-        adapter = new ClubsAdapter(new ClubItemClickListener() {
+        adapter = new ClubsAdapter(new ItemClickListener() {
             public void onItemClick(View view, int position) {
                 Log.d(TAG, "clicked position: " + position);
                 Log.d(TAG, "clicked on: " + clubs.get(position).getName());
 
                 Intent intent = new Intent(ClubsActivity.this, ClubActivity.class);
-                intent.putExtra("id", clubs.get(position).getId());
+                intent.putExtra("idClub", clubs.get(position).getId());
                 startActivity(intent);
             }
         });

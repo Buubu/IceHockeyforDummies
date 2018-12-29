@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Default -->
     <item android:state_checked="false"
-        android:drawable="@drawable/ic_notfavorite" />
+        android:drawable="@drawable/ic_clubpage_notfavorite" />
 
     <!-- Favorite -->
     <item android:state_checked="true"
         android:state_activated="true"
-        android:drawable="@drawable/ic_favorite" />
+        android:drawable="@drawable/ic_clubpage_favorite" />
 </selector>

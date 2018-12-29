@@ -57,11 +57,4 @@ public class ClubsListViewModel extends AndroidViewModel {
     public LiveData<List<ClubEntity>> getAllClubs() {
         return observableClubs;
     }
-
-
-    // Behaviour of the delete query
-    public void deleteClub(ClubEntity club) {
-        ((BaseApp) getApplication()).getClubRepository()
-                .delete(club);
-    }
 }

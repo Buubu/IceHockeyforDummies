@@ -26,7 +26,8 @@
         <activity android:name=".user_interface.SettingsActivity" />
         <activity android:name=".user_interface.SLActivity" />
         <activity android:name=".user_interface.ClubsActivity" />
-        <activity android:name=".user_interface.ClubActivity"></activity>
+        <activity android:name=".user_interface.ClubActivity" />
+        <activity android:name=".user_interface.PlayerActivity"></activity>
     </application>
 
 </manifest>
