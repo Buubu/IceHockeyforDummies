@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Rounded ImageView retrieved the 30th of December on https://github.com/hdodenhof/CircleImageView
+
+    Copyright 2014 - 2018 Henning Dodenhof
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. -->
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,4 +23,229 @@
     android:layout_height="match_parent"
     tools:context=".user_interface.PlayerActivity">
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/playerpage_layout"
+        android:layout_width="match_parent"
+        android:layout_height="204dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="234dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/player_background" />
+
+        <TextView
+            android:id="@+id/playerpage_name"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:background="#aa000000"
+            android:fontFamily="sans-serif"
+            android:paddingTop="25dp"
+            android:text="@string/clubs"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- START OF THE RETRIEVED LIBRARY -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/playerpage_portrait"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/player"
+            app:layout_constraintBottom_toBottomOf="@+id/playerpage_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#ffffff" />
+        <!-- END OF THE RETRIEVED LIBRARY -->
+
+        <ImageView
+            android:id="@+id/playerpage_modify"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/button_edit"
+            android:onClick="editPlayer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/playerpage_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:src="@drawable/button_delete"
+            android:onClick="removePlayer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playerpage_modify" />
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/clubpage_secondlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ff0000"
+        app:layout_constraintTop_toBottomOf="@+id/playerpage_layout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/overview"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="311dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clubpage_secondlayout"
+        android:background="#8e8e8e">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="186dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/details"
+                        android:textColor="#4b4b4b"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#8e8e8e" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="136dp">
+
+                    <TextView
+                        android:id="@+id/birthdate"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:text="@string/birthdate"
+                        android:textAlignment="textEnd"
+                        android:textColor="#4b4b4b"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/position"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="@string/position"
+                        android:textAlignment="textEnd"
+                        android:textColor="#4b4b4b"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/license"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/birthdate" />
+
+                    <TextView
+                        android:id="@+id/license"
+                        android:layout_width="100dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="70dp"
+                        android:gravity="center"
+                        android:text="@string/license"
+                        android:textAlignment="textEnd"
+                        android:textColor="#4b4b4b"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/playerpage_birthdate"
+                        android:layout_width="50dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:text="@string/birth_example"
+                        android:textAlignment="textStart"
+                        android:textColor="#4b4b4b"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/birthdate"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/playerpage_position"
+                        android:layout_width="120dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="@string/pos_example"
+                        android:textAlignment="textStart"
+                        android:textColor="#4b4b4b"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/playerpage_license"
+                        app:layout_constraintStart_toEndOf="@+id/position"
+                        app:layout_constraintTop_toBottomOf="@+id/playerpage_birthdate" />
+
+                    <TextView
+                        android:id="@+id/playerpage_license"
+                        android:layout_width="120dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="32dp"
+                        android:gravity="center"
+                        android:text="@string/lice_example"
+                        android:textAlignment="textStart"
+                        android:textColor="#4b4b4b"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/license" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

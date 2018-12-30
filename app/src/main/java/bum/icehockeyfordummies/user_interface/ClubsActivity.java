@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import java.util.ArrayList;
@@ -76,5 +77,16 @@ public class ClubsActivity extends MainActivity {
 
         finish();
         return super.onNavigationItemSelected(item);
+    }
+
+
+    // Override the method to show the "plus" button to add a club inside the toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_action, menu);
+
+        MenuItem item = menu.findItem(R.id.action_add);
+        item.setVisible(true);
+        return true;
     }
 }

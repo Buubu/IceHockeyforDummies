@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import bum.icehockeyfordummies.R;
@@ -123,6 +124,29 @@ NavigationView.OnNavigationItemSelectedListener {
             startActivity(intent);
         }
         this.layout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    // Create the "plus" action button inside the toolbar
+    // Generally it's hidden, except for the ClubsActivity
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_action, menu);
+
+        MenuItem item = menu.findItem(R.id.action_add);
+        item.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = null;
+
+        if (item.getItemId() == R.id.action_add) {
+            intent = new Intent(this, AddClubActivity.class);
+            startActivity(intent);
+        }
+
         return true;
     }
 }

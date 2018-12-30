@@ -23,4 +23,13 @@
     <string name="player_number">#00</string>
     <string name="player_name">Player Player</string>
 
+    <!-- Player page values -->
+    <string name="overview">OVERVIEW</string>
+    <string name="details">PLAYER DETAILS</string>
+    <string name="birthdate">Born in</string>
+    <string name="birth_example">1992</string>
+    <string name="position">Position</string>
+    <string name="pos_example">Goalie</string>
+    <string name="license">License</string>
+    <string name="lice_example">CH</string>
 </resources>
