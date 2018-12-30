@@ -10,7 +10,7 @@ import bum.icehockeyfordummies.models.Club;
 public class ClubEntity implements Club {
     private String id;
     private boolean favorite;
-    private Map<String, Boolean> leagues;
+    private Map<String, Boolean> leagues = new HashMap<>();
     private String logo;
     private String name;
     private Map<String, Boolean> players;
@@ -32,15 +32,14 @@ public class ClubEntity implements Club {
     }
 
     // Constructor with parameters
-    public ClubEntity(String logo, String name, LeagueEntity league) {
+    public ClubEntity(String logo, String name, String idLeague) {
         favorite = false;
         this.logo = logo;
         this.name = name;
         system = false;
 
-        String id = league.getId();
+        String id = idLeague;
         leagues.put(id, true);
-
     }
 
 

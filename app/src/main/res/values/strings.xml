@@ -32,4 +32,18 @@
     <string name="pos_example">Goalie</string>
     <string name="license">License</string>
     <string name="lice_example">CH</string>
+
+    <!-- Add a club page -->
+    <string name="add">Add a new club</string>
+    <string name="club_name">Name of the club</string>
+    <string name="club_league">League of the club</string>
+    <string name="choice_league">Choose a league</string>
+    <string name="club_name_error">This name is too short: it must be at least 6 characters long.</string>
+    <string-array name="leagues_array">
+        <item>National League</item>
+        <item>Swiss League</item>
+        <item>MySports League</item>
+        <item>Regio League / Elite</item>
+    </string-array>
+    <string name="club_created">The new club is successfully created.</string>
 </resources>

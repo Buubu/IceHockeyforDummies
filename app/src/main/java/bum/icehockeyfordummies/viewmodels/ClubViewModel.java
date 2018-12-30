@@ -56,7 +56,7 @@ public class ClubViewModel extends AndroidViewModel {
         return observableClub;
     }
 
-    public void createClub(ClubEntity club, LeagueEntity league) {
+    public void createClub(ClubEntity club, String league) {
         ((BaseApp) getApplication()).getClubRepository()
                 .insert(club, league);
     }

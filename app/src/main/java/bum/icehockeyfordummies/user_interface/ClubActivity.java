@@ -46,7 +46,7 @@ public class ClubActivity extends AppCompatActivity {
 
         // Retrieve all the elements related to the club
         name = findViewById(R.id.clubpage_name);
-        logo = findViewById(R.id.clubpage_logo);
+        logo = findViewById(R.id.addclub_logo);
         favorite = findViewById(R.id.clubpage_favorite);
         delete = findViewById(R.id.clubpage_delete);
 

@@ -95,7 +95,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/clubpage_secondlayout"
+        android:id="@+id/addclub_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
@@ -113,7 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clubpage_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/addclub_secondlayout"
         android:background="#8e8e8e">
 
         <android.support.v7.widget.CardView

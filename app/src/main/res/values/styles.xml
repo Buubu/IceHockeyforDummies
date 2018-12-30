@@ -10,6 +10,17 @@
     </style>
 
 
+    <!-- Input theme -->
+    <style name="input">
+        <item name="android:textColorHint">#4b4b4b</item>
+        <item name="android:textSize">20sp</item>
+
+        <item name="colorAccent">#a20000</item>
+        <item name="colorControlNormal">#a20000</item>
+        <item name="colorControlActivated">#a20000</item>
+    </style>
+
+
     <!-- Toolbar theme -->
     <style name="ToolbarStyle">
         <item name="android:background">#ff0000</item>

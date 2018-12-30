@@ -7,7 +7,7 @@
     tools:context=".user_interface.ClubActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/clubpage_layout"
+        android:id="@+id/addclub_layout"
         android:layout_width="match_parent"
         android:layout_height="204dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
-            android:id="@+id/clubpage_logo"
+            android:id="@+id/addclub_logo"
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:layout_marginBottom="50dp"
@@ -73,11 +73,11 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/clubpage_secondlayout"
+        android:id="@+id/addclub_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
-        app:layout_constraintTop_toBottomOf="@+id/clubpage_layout">
+        app:layout_constraintTop_toBottomOf="@+id/addclub_layout">
 
         <TextView
             android:layout_width="match_parent"
@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clubpage_secondlayout">
+        app:layout_constraintTop_toBottomOf="@+id/addclub_secondlayout">
 
         <android.support.v7.widget.RecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"
