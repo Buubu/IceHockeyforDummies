@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rounded ImageView retrieved the 30th of December on https://github.com/hdodenhof/CircleImageView
+
+    Copyright 2014 - 2018 Henning Dodenhof
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. -->
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user_interface.AddPlayerActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/addplayer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="204dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="234dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/player_background" />
+
+        <!-- START OF THE RETRIEVED LIBRARY -->
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/addplayer_portrait"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/player"
+            app:civ_border_color="#ffffff"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- END OF THE RETRIEVED LIBRARY -->
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/addplayer_secondlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ff0000"
+        app:layout_constraintTop_toBottomOf="@+id/addplayer_layout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/add_player"
+            android:textSize="25sp"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="331dp"
+        android:layout_marginBottom="8dp"
+        android:background="#8e8e8e"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addplayer_secondlayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="281dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/informations"
+                        android:textColor="#4b4b4b"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#8e8e8e" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp">
+
+                    <TextView
+                        android:id="@+id/addplayer_club"
+                        android:layout_width="150dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:textStyle="italic"
+                        android:gravity="center_vertical"
+                        android:text="@string/club_name"
+                        android:textSize="16sp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        app:layout_constraintStart_toEndOf="@+id/addplayer_clubtitle"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/addplayer_clubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/pclub"
+                        android:textColor="#a20000"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputlayout_pfirstname"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="65dp"
+                        android:theme="@style/pinput"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addplayer_clubtitle">
+
+                        <EditText
+                            android:id="@+id/addplayer_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/pfirstname"
+                            android:inputType="textPersonName|textCapWords|textNoSuggestions|textVisiblePassword"
+                            android:singleLine="true" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/inputlayout_plastname"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="65dp"
+                        android:theme="@style/pinput"
+                        app:layout_constraintStart_toEndOf="@+id/inputlayout_pfirstname"
+                        app:layout_constraintTop_toBottomOf="@+id/addplayer_clubtitle">
+
+                        <EditText
+                            android:id="@+id/addplayer_lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/plastname"
+                            android:inputType="textPersonName|textCapWords|textNoSuggestions|textVisiblePassword"
+                            android:singleLine="true" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/addplayer_numbertitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="22dp"
+                        android:text="@string/pnumber"
+                        android:textColor="#a20000"
+                        app:layout_constraintEnd_toStartOf="@+id/addplayer_number"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <NumberPicker
+                        android:id="@+id/addplayer_number"
+                        android:layout_width="36dp"
+                        android:layout_height="58dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="2dp"
+                        android:theme="@style/pinput"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="37dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/plicense"
+                        android:textColor="#a20000"
+                        app:layout_constraintStart_toEndOf="@+id/addplayer_birthdate"
+                        app:layout_constraintTop_toBottomOf="@+id/inputlayout_pfirstname" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="28dp"
+                        android:text="@string/pposition"
+                        android:textColor="#a20000"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/addplayer_clubtitle" />
+
+                    <Spinner
+                        android:id="@+id/addplayer_position"
+                        android:layout_width="140dp"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="#a20000"
+                        app:layout_constraintBottom_toTopOf="@+id/inputlayout_pfirstname"
+                        app:layout_constraintStart_toEndOf="@+id/textView6"
+                        app:layout_constraintTop_toBottomOf="@+id/addplayer_club" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:text="@string/pbirthdate"
+                        android:textColor="#a20000"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/inputlayout_pfirstname" />
+
+                    <NumberPicker
+                        android:id="@+id/addplayer_birthdate"
+                        android:layout_width="54dp"
+                        android:layout_height="58dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:theme="@style/pinput"
+                        app:layout_constraintStart_toEndOf="@+id/textView4"
+                        app:layout_constraintTop_toBottomOf="@+id/inputlayout_pfirstname" />
+
+                    <Spinner
+                        android:id="@+id/addplayer_license"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="32dp"
+                        android:backgroundTint="#a20000"
+                        app:layout_constraintStart_toEndOf="@+id/addplayer_birthdate"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/addplayer_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_check"
+                        app:backgroundTint="#a20000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

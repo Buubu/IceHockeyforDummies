@@ -56,7 +56,7 @@ public class PlayerViewModel extends AndroidViewModel {
         return observablePlayer;
     }
 
-    public void createPlayer(PlayerEntity player, ClubEntity club) {
+    public void createPlayer(PlayerEntity player, String club) {
         ((BaseApp) getApplication()).getPlayerRepository()
                 .insert(player, club);
     }

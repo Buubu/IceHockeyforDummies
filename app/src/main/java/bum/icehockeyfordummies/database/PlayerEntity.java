@@ -10,7 +10,7 @@ import bum.icehockeyfordummies.models.Player;
 public class PlayerEntity implements Player {
     private String id;
     private int birthdate;
-    private Map<String, Boolean> clubs;
+    private Map<String, Boolean> clubs = new HashMap<>();
     private String firstname;
     private String lastname;
     private String license;
@@ -41,7 +41,7 @@ public class PlayerEntity implements Player {
 
     // Constructor with parameters
     public PlayerEntity(int birthdate, String firstname, String lastname, String license, int number,
-                        String picture, String position, ClubEntity club) {
+                        String picture, String position, String club) {
         this.birthdate = birthdate;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -52,7 +52,7 @@ public class PlayerEntity implements Player {
         this.position = position;
         system = false;
 
-        String id = club.getId();
+        String id = club;
         clubs.put(id, true);
     }
 

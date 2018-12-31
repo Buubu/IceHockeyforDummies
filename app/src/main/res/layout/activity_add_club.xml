@@ -39,7 +39,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/addclub_secondlayout"
+        android:id="@+id/addplayer_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
@@ -59,7 +59,7 @@
         android:layout_height="311dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addclub_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/addplayer_secondlayout"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
 
@@ -83,7 +83,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputlayout_clubname"
+            android:id="@+id/inputlayout_pfirstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/addclubinput_league">
 
             <EditText
-                android:id="@+id/addclubinput_name"
+                android:id="@+id/addplayer_firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/club_name"
@@ -114,6 +114,6 @@
             android:src="@drawable/ic_check"
             app:backgroundTint="#a20000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputlayout_clubname" />
+            app:layout_constraintTop_toBottomOf="@+id/inputlayout_pfirstname" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

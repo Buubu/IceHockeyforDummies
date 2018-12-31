@@ -182,4 +182,12 @@ public class ClubActivity extends AppCompatActivity {
         Intent intent = new Intent(ClubActivity.this, ClubsActivity.class);
         startActivity(intent);
     }
+
+
+    // Add a new player
+    public void addPlayer(View view) {
+        Intent intent = new Intent(ClubActivity.this, AddPlayerActivity.class);
+        intent.putExtra("Club", idClub+";"+club.getName());
+        startActivity(intent);
+    }
 }

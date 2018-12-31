@@ -34,7 +34,7 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         // Retrieve all the elements related to the player
-        portrait = findViewById(R.id.playerpage_portrait);
+        portrait = findViewById(R.id.addplayer_portrait);
         name = findViewById(R.id.playerpage_name);
         birthdate = findViewById(R.id.playerpage_birthdate);
         position = findViewById(R.id.playerpage_position);

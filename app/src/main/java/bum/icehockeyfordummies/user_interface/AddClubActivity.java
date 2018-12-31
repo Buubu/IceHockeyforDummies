@@ -38,8 +38,8 @@ public class AddClubActivity extends AppCompatActivity {
         // Retrieve all the elements
         repo = ((BaseApp) getApplication()).getClubRepository();
         spinner = findViewById(R.id.addclubinput_league);
-        layout = findViewById(R.id.inputlayout_clubname);
-        name = findViewById(R.id.addclubinput_name);
+        layout = findViewById(R.id.inputlayout_pfirstname);
+        name = findViewById(R.id.addplayer_firstname);
         button = findViewById(R.id.addclub_button);
 
 
@@ -89,7 +89,7 @@ public class AddClubActivity extends AppCompatActivity {
                 Thread thread = new Thread() {
                     public void run() {
                         try {
-                            Thread.sleep(3500); // As I am using LENGTH_LONG in Toast
+                            Thread.sleep(3500);
                             startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();

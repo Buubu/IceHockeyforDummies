@@ -50,7 +50,7 @@ public class PlayerRepository {
 
 
     // Insert a player (includes create the player and add him to a club)
-    public void insert(final PlayerEntity player, final ClubEntity club) {
+    public void insert(final PlayerEntity player, final String club) {
 
         // Create a reference for the new player
         DatabaseReference reference = FirebaseDatabase.getInstance()
@@ -72,7 +72,7 @@ public class PlayerRepository {
         // Add this new player into the club
         FirebaseDatabase.getInstance()
                 .getReference("clubs")
-                .child(club.getId())
+                .child(club)
                 .child("players")
                 .child(key)
                 .setValue(true, (databaseError, databaseReference) -> {

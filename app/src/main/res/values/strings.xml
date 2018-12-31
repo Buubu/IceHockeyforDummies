@@ -47,4 +47,26 @@
         <item>Regio League / Elite</item>
     </string-array>
     <string name="club_created">The new club is successfully created.</string>
+
+    <!-- Add a player page -->
+    <string name="add_player">Add a new player</string>
+    <string name="informations">PLAYER INFORMATIONS</string>
+    <string name="pfirstname">Firstname</string>
+    <string name="plastname">Lastname</string>
+    <string name="pbirthdate">Birthdate</string>
+    <string name="pclub">Club</string>
+    <string name="pnumber">Number</string>
+    <string-array name="positions_array">
+        <item>Winger</item>
+        <item>Defense</item>
+        <item>Goalie</item>
+    </string-array>
+    <string-array name="licenses_array">
+        <item>CH</item>
+        <item>Foreign</item>
+    </string-array>
+    <string name="plicense">License</string>
+    <string name="pposition">Position</string>
+    <string name="player_created">The new player is successfully added.</string>
+    <string name="player_name_error">This name is too short!</string>
 </resources>

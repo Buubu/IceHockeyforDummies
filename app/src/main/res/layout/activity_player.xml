@@ -24,7 +24,7 @@
     tools:context=".user_interface.PlayerActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/playerpage_layout"
+        android:id="@+id/addplayer_layout"
         android:layout_width="match_parent"
         android:layout_height="204dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
         <!-- START OF THE RETRIEVED LIBRARY -->
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/playerpage_portrait"
+            android:id="@+id/addplayer_portrait"
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:layout_marginBottom="50dp"
@@ -95,11 +95,11 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/addclub_secondlayout"
+        android:id="@+id/addplayer_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
-        app:layout_constraintTop_toBottomOf="@+id/playerpage_layout">
+        app:layout_constraintTop_toBottomOf="@+id/addplayer_layout">
 
         <TextView
             android:layout_width="match_parent"
@@ -113,7 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addclub_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/addplayer_secondlayout"
         android:background="#8e8e8e">
 
         <android.support.v7.widget.CardView
