@@ -55,19 +55,4 @@ public class PlayerViewModel extends AndroidViewModel {
     public LiveData<PlayerEntity> getPlayer() {
         return observablePlayer;
     }
-
-    public void createPlayer(PlayerEntity player, String club) {
-        ((BaseApp) getApplication()).getPlayerRepository()
-                .insert(player, club);
-    }
-
-    public void updatePlayer(PlayerEntity player) {
-        ((BaseApp) getApplication()).getPlayerRepository()
-                .update(player);
-    }
-
-    public void deletePlayer(PlayerEntity player) {
-        ((BaseApp) getApplication()).getPlayerRepository()
-                .delete(player);
-    }
 }

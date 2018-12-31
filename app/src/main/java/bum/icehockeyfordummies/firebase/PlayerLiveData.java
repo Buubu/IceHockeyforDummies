@@ -35,7 +35,11 @@ public class PlayerLiveData extends LiveData<PlayerEntity> {
     private class PlayerListener implements ValueEventListener {
         public void onDataChange(DataSnapshot snapshot) {
             PlayerEntity player = snapshot.getValue(PlayerEntity.class);
-            player.setId(snapshot.getKey());
+
+            if (player != null) {
+                player.setId(snapshot.getKey());
+            }
+
             setValue(player);
         }
 

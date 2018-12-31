@@ -101,10 +101,25 @@ public class PlayerRepository {
 
 
     // Delete a player
-    public void delete(final PlayerEntity player) {
+    public void delete(final String player, final String club) {
+
+        // Delete the reference of the player inside the club
+        FirebaseDatabase.getInstance()
+                .getReference("clubs")
+                .child(club)
+                .child("players")
+                .child(player).removeValue((databaseError, databaseReference) -> {
+            if (databaseError != null) {
+                Log.d(TAG, "Delete failure!", databaseError.toException());
+            } else {
+                Log.d(TAG, "Delete successful!");
+            }
+        });
+
+        // Delete the player
         FirebaseDatabase.getInstance()
                 .getReference("players")
-                .child(player.getId())
+                .child(player)
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         Log.d(TAG, "Delete failure!", databaseError.toException());

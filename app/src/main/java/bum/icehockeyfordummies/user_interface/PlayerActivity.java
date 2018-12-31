@@ -1,12 +1,20 @@
 package bum.icehockeyfordummies.user_interface;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import java.util.Map;
 import bum.icehockeyfordummies.R;
+import bum.icehockeyfordummies.database.BaseApp;
 import bum.icehockeyfordummies.database.PlayerEntity;
+import bum.icehockeyfordummies.database.PlayerRepository;
 import bum.icehockeyfordummies.viewmodels.PlayerViewModel;
 
 
@@ -26,6 +34,8 @@ public class PlayerActivity extends AppCompatActivity {
     // Actions of the page
     private ImageView edit;
     private ImageView delete;
+    private Toast toast;
+    private PlayerRepository repo;
 
 
     @Override
@@ -41,6 +51,7 @@ public class PlayerActivity extends AppCompatActivity {
         license = findViewById(R.id.playerpage_license);
         edit = findViewById(R.id.playerpage_modify);
         delete = findViewById(R.id.playerpage_delete);
+        repo = ((BaseApp) getApplication()).getPlayerRepository();
 
         // Retrieve the value passed through the intent
         idPlayer = getIntent().getStringExtra("idPlayer");
@@ -84,5 +95,26 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    // Delete the player
+    public void removePlayer(View view) {
+
+        // Retrieve the club
+        Map.Entry<String, Boolean> entry = player.getClubs().entrySet().iterator().next();
+        String idClub = entry.getKey();
+
+        // Create a toast for the confirmation
+        toast = toast.makeText(getApplicationContext(), getString(R.string.player_deleted), Toast.LENGTH_LONG);
+        TextView toastText = toast.getView().findViewById(android.R.id.message);
+        toastText.setTextColor(Color.WHITE);
+        toast.getView().getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        toast.show();
+
+        repo.delete(idPlayer, idClub);
+        Intent intent = new Intent(PlayerActivity.this, ClubActivity.class);
+        intent.putExtra("idClub", idClub);
+        startActivity(intent);
     }
 }

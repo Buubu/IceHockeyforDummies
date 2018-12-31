@@ -33,6 +33,7 @@
     <string name="pos_example">Goalie</string>
     <string name="license">License</string>
     <string name="lice_example">CH</string>
+    <string name="player_deleted">This player has been deleted.</string>
 
     <!-- Add a club page -->
     <string name="add">Add a new club</string>
