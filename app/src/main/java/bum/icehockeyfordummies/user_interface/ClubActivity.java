@@ -2,6 +2,8 @@ package bum.icehockeyfordummies.user_interface;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,12 +12,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import bum.icehockeyfordummies.R;
 import bum.icehockeyfordummies.adapters.ItemClickListener;
 import bum.icehockeyfordummies.adapters.PlayersAdapter;
+import bum.icehockeyfordummies.database.BaseApp;
 import bum.icehockeyfordummies.database.ClubEntity;
+import bum.icehockeyfordummies.database.ClubRepository;
 import bum.icehockeyfordummies.database.PlayerEntity;
 import bum.icehockeyfordummies.viewmodels.ClubViewModel;
 import bum.icehockeyfordummies.viewmodels.PlayersListViewModel;
@@ -34,9 +40,14 @@ public class ClubActivity extends AppCompatActivity {
     private TextView name;
     private ImageView logo;
     private ImageView favorite;
+    private ImageView edit;
     private ImageView delete;
     private ClubEntity club;
     private ClubViewModel clubModel;
+
+    // Club repository
+    private ClubRepository repo;
+    private Toast toast;
 
 
     @Override
@@ -45,9 +56,11 @@ public class ClubActivity extends AppCompatActivity {
         setContentView(R.layout.activity_club);
 
         // Retrieve all the elements related to the club
+        repo = ((BaseApp) getApplication()).getClubRepository();
         name = findViewById(R.id.clubpage_name);
         logo = findViewById(R.id.addclub_logo);
         favorite = findViewById(R.id.clubpage_favorite);
+        edit = findViewById(R.id.clubpage_modify);
         delete = findViewById(R.id.clubpage_delete);
 
         // Retrieve the value passed through the intent
@@ -81,8 +94,11 @@ public class ClubActivity extends AppCompatActivity {
 
                 // Set the delete button
                 if (club.getSystem()) {
+                    edit.setEnabled(false);
                     delete.setEnabled(false);
+
                 } else {
+                    edit.setEnabled(true);
                     delete.setEnabled(true);
                 }
             }
@@ -122,5 +138,48 @@ public class ClubActivity extends AppCompatActivity {
         });
 
         recycler.setAdapter(adapter);
+    }
+
+
+    // Mark a club as favorite
+    public void markFavorite(View view) {
+        repo.favorite(idClub, club.getFavorite());
+    }
+
+
+    // Edit the club
+    public void editClub(View view) {
+        // does something very interesting
+        System.out.print("EDIT");
+        Log.d(TAG, "EDIT");
+    }
+
+
+    // Delete the club
+    public void removeClub(View view) {
+        // Retrieve the league
+        Map.Entry<String, Boolean> entry = club.getLeagues().entrySet().iterator().next();
+        String league = entry.getKey();
+
+        // Retrieve the players
+        Map<String, Boolean> data = club.getPlayers();
+        ArrayList<String> players = new ArrayList<>();
+
+        if (data != null) {
+            for (Map.Entry<String, Boolean> set : data.entrySet()) {
+                players.add(set.getKey());
+            }
+        }
+
+        // Create a toast for the confirmation
+        toast = toast.makeText(getApplicationContext(), getString(R.string.club_deleted), Toast.LENGTH_LONG);
+        TextView toastText = toast.getView().findViewById(android.R.id.message);
+        toastText.setTextColor(Color.WHITE);
+        toast.getView().getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
+        toast.show();
+
+        repo.delete(idClub, league, players);
+        Intent intent = new Intent(ClubActivity.this, ClubsActivity.class);
+        startActivity(intent);
     }
 }

@@ -2,8 +2,15 @@ package bum.icehockeyfordummies.database;
 
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.List;
 import bum.icehockeyfordummies.firebase.ClubLiveData;
 import bum.icehockeyfordummies.firebase.ClubsLiveData;
@@ -96,6 +103,24 @@ public class ClubRepository {
     }
 
 
+    // Mark a club as favorite
+    public void favorite(final String idClub, final Boolean favorite) {
+        Boolean todo;
+
+        if (favorite) {
+            todo = false;
+        } else {
+            todo = true;
+        }
+
+        FirebaseDatabase.getInstance()
+                .getReference("clubs")
+                .child(idClub)
+                .child("favorite")
+                .setValue(todo);
+    }
+
+
     // Update a club
     public void update(final ClubEntity club) {
         FirebaseDatabase.getInstance()
@@ -112,11 +137,35 @@ public class ClubRepository {
 
 
     // Delete a club
-    //TODO: when a club is deleted, all the players related too?
-    public void delete(final ClubEntity club) {
+    public void delete(final String club, final String league, ArrayList<String> players) {
+
+        // Delete the reference of the club inside the league
+        FirebaseDatabase.getInstance()
+                .getReference("leagues")
+                .child(league)
+                .child("clubs")
+                .child(club).removeValue((databaseError, databaseReference) -> {
+            if (databaseError != null) {
+                Log.d(TAG, "Delete failure!", databaseError.toException());
+            } else {
+                Log.d(TAG, "Delete successful!");
+            }
+        });
+
+        // Delete the reference of the club inside the players
+        if (players != null) {
+            for (String player: players) {
+                FirebaseDatabase.getInstance().getReference("players")
+                        .child(player)
+                        .child("clubs")
+                        .child(club).removeValue();
+            }
+        }
+
+        // Delete the club
         FirebaseDatabase.getInstance()
                 .getReference("clubs")
-                .child(club.getId())
+                .child(club)
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         Log.d(TAG, "Delete failure!", databaseError.toException());

@@ -22,6 +22,7 @@
     <string name="players">PLAYERS</string>
     <string name="player_number">#00</string>
     <string name="player_name">Player Player</string>
+    <string name="club_deleted">This club has been deleted.</string>
 
     <!-- Player page values -->
     <string name="overview">OVERVIEW</string>

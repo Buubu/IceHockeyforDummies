@@ -62,8 +62,6 @@ public class PlayersLiveData extends LiveData<List<PlayerEntity>> {
         for (int item=0; item<ref.size(); item++) {
             Map<String, Boolean> clubs = ref.get(item).getClubs();
 
-
-
             for (Object club : clubs.keySet()) {
                 if (club.equals(idClub)) {
                     players.add(ref.get(item));

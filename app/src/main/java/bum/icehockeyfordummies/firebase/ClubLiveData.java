@@ -35,7 +35,11 @@ public class ClubLiveData extends LiveData<ClubEntity> {
     private class ClubListener implements ValueEventListener {
         public void onDataChange(DataSnapshot snapshot) {
             ClubEntity club = snapshot.getValue(ClubEntity.class);
-            club.setId(snapshot.getKey());
+
+            if (club != null) {
+                club.setId(snapshot.getKey());
+            }
+
             setValue(club);
         }
 

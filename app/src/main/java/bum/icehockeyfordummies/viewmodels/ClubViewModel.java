@@ -6,6 +6,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+
+import java.util.ArrayList;
+
 import bum.icehockeyfordummies.database.BaseApp;
 import bum.icehockeyfordummies.database.ClubEntity;
 import bum.icehockeyfordummies.database.ClubRepository;
@@ -66,8 +69,8 @@ public class ClubViewModel extends AndroidViewModel {
                 .update(club);
     }
 
-    public void deleteClub(ClubEntity club) {
+    public void deleteClub(String club, String league, ArrayList<String> players) {
         ((BaseApp) getApplication()).getClubRepository()
-                .delete(club);
+                .delete(club, league, players);
     }
 }
