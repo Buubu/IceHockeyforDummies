@@ -110,6 +110,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edit_firstname" />
 
+        <ImageView
+            android:id="@+id/editplayer_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <!-- START OF THE RETRIEVED LIBRARY -->
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/editplayer_portrait"
@@ -129,7 +140,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/editplayer_secondlayout"
+        android:id="@+id/editclub_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
@@ -148,7 +159,7 @@
         android:layout_width="match_parent"
         android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editplayer_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/editclub_secondlayout"
         android:background="#8e8e8e">
 
         <android.support.v7.widget.CardView

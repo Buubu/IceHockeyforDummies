@@ -78,4 +78,5 @@
     <string name="player_updated">This player has been successfully updated.</string>
     <string name="club_updated">This club has been successfully updated.</string>
     <string name="player_number_error">You must enter a number for this player.</string>
+    <string name="modify_league">Modify the league of the club</string>
 </resources>

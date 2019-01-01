@@ -58,19 +58,4 @@ public class ClubViewModel extends AndroidViewModel {
     public LiveData<ClubEntity> getClub() {
         return observableClub;
     }
-
-    public void createClub(ClubEntity club, String league) {
-        ((BaseApp) getApplication()).getClubRepository()
-                .insert(club, league);
-    }
-
-    public void updateClub(ClubEntity club) {
-        ((BaseApp) getApplication()).getClubRepository()
-                .update(club);
-    }
-
-    public void deleteClub(String club, String league, ArrayList<String> players) {
-        ((BaseApp) getApplication()).getClubRepository()
-                .delete(club, league, players);
-    }
 }

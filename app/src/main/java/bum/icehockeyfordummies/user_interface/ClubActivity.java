@@ -190,4 +190,11 @@ public class ClubActivity extends AppCompatActivity {
         intent.putExtra("Club", idClub+";"+club.getName());
         startActivity(intent);
     }
+
+
+    // Back to the list of clubs
+    public void back(View view) {
+        Intent intent = new Intent(ClubActivity.this, ClubsActivity.class);
+        startActivity(intent);
+    }
 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -100,9 +101,8 @@ public class PlayerActivity extends AppCompatActivity {
 
     // Edit the player
     public void editPlayer(View view) {
-        Intent intent = new Intent(PlayerActivity.this, EditPlayerActivity.class);
-        intent.putExtra("idPlayer", idPlayer);
-        startActivity(intent);
+        edit.putExtra("idPlayer", idPlayer);
+        startActivity(edit);
     }
 
 
@@ -124,5 +124,17 @@ public class PlayerActivity extends AppCompatActivity {
         Intent intent = new Intent(PlayerActivity.this, ClubActivity.class);
         intent.putExtra("idClub", idClub);
         startActivity(intent);
+    }
+
+
+    // Back to the club page
+    public void back(View view) {
+        // Retrieve the club
+        Map.Entry<String, Boolean> entry = player.getClubs().entrySet().iterator().next();
+        String idClub = entry.getKey();
+
+        Intent page = new Intent(PlayerActivity.this, ClubActivity.class);
+        page.putExtra("idClub", idClub);
+        startActivity(page);
     }
 }

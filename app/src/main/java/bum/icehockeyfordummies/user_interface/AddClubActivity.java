@@ -115,4 +115,11 @@ public class AddClubActivity extends AppCompatActivity {
 
         return true;
     }
+
+
+    // Back to the list of clubs
+    public void back(View view) {
+        Intent intent = new Intent(AddClubActivity.this, ClubsActivity.class);
+        startActivity(intent);
+    }
 }

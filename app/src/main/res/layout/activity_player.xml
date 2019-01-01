@@ -71,17 +71,6 @@
         <!-- END OF THE RETRIEVED LIBRARY -->
 
         <ImageView
-            android:id="@+id/playerpage_modify"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="21dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/button_edit"
-            android:onClick="editPlayer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:id="@+id/playerpage_delete"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -92,10 +81,33 @@
             android:onClick="removePlayer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/playerpage_modify" />
+
+        <ImageView
+            android:id="@+id/playerpage_modify"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/button_edit"
+            android:onClick="editPlayer"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/playerpage_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/editplayer_secondlayout"
+        android:id="@+id/editclub_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
@@ -113,7 +125,7 @@
         android:layout_width="match_parent"
         android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editplayer_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/editclub_secondlayout"
         android:background="#8e8e8e">
 
         <android.support.v7.widget.CardView

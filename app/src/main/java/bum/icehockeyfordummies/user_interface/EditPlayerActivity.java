@@ -158,6 +158,14 @@ public class EditPlayerActivity extends AppCompatActivity {
     }
 
 
+    // Back to the player page
+    public void back(View view) {
+        Intent intent = new Intent(EditPlayerActivity.this, PlayerActivity.class);
+        intent.putExtra("idPlayer", id);
+        startActivity(intent);
+    }
+
+
     // Verify the three inputs (text)
     private boolean verifyNumber () {
         if (number.getText().toString().length() < 1) {

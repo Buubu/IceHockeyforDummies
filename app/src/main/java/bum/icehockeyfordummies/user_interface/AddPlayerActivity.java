@@ -151,4 +151,12 @@ public class AddPlayerActivity extends AppCompatActivity {
 
         return true;
     }
+
+
+    // Back to the club page
+    public void back(View view) {
+        Intent intent = new Intent(AddPlayerActivity.this, ClubActivity.class);
+        intent.putExtra("idClub", idClub);
+        startActivity(intent);
+    }
 }

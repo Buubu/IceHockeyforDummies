@@ -12,6 +12,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import bum.icehockeyfordummies.firebase.ClubLiveData;
 import bum.icehockeyfordummies.firebase.ClubsLiveData;
 
@@ -122,7 +124,26 @@ public class ClubRepository {
 
 
     // Update a club
-    public void update(final ClubEntity club) {
+    public void update(final ClubEntity club, String oldLeague, String newLeague) {
+
+        // Change the reference of the club inside the leagues
+        Map.Entry<String, Boolean> entry = club.getLeagues().entrySet().iterator().next();
+        if (entry.getKey() != oldLeague) {
+            FirebaseDatabase.getInstance()
+                    .getReference("leagues")
+                    .child(oldLeague)
+                    .child("clubs")
+                    .child(club.getId()).removeValue();
+
+            FirebaseDatabase.getInstance()
+                    .getReference("leagues")
+                    .child(newLeague)
+                    .child("clubs")
+                    .child(club.getId())
+                    .setValue(true);
+        }
+
+        // Update the club
         FirebaseDatabase.getInstance()
                 .getReference("clubs")
                 .child(club.getId())

@@ -23,6 +23,17 @@
             android:src="@drawable/club_background" />
 
         <ImageView
+            android:id="@+id/addclub_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/addclub_logo"
             android:layout_width="175dp"
             android:layout_height="175dp"
@@ -39,7 +50,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/editplayer_secondlayout"
+        android:id="@+id/editclub_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
@@ -59,7 +70,7 @@
         android:layout_height="311dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editplayer_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/editclub_secondlayout"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
 
