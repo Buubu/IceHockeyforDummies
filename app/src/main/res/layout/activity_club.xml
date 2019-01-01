@@ -85,7 +85,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/addplayer_secondlayout"
+        android:id="@+id/editplayer_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
@@ -118,7 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addplayer_secondlayout">
+        app:layout_constraintTop_toBottomOf="@+id/editplayer_secondlayout">
 
         <android.support.v7.widget.RecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"

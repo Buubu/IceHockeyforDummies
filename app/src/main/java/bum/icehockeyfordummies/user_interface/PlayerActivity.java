@@ -44,11 +44,11 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player);
 
         // Retrieve all the elements related to the player
-        portrait = findViewById(R.id.addplayer_portrait);
-        name = findViewById(R.id.playerpage_name);
-        birthdate = findViewById(R.id.playerpage_birthdate);
-        position = findViewById(R.id.playerpage_position);
-        license = findViewById(R.id.playerpage_license);
+        portrait = findViewById(R.id.editplayer_portrait);
+        name = findViewById(R.id.editplayer_background);
+        birthdate = findViewById(R.id.edit_birthdate);
+        position = findViewById(R.id.edit_position);
+        license = findViewById(R.id.edit_license);
         edit = findViewById(R.id.playerpage_modify);
         delete = findViewById(R.id.playerpage_delete);
         repo = ((BaseApp) getApplication()).getPlayerRepository();
@@ -95,6 +95,14 @@ public class PlayerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+    // Edit the player
+    public void editPlayer(View view) {
+        Intent intent = new Intent(PlayerActivity.this, EditPlayerActivity.class);
+        intent.putExtra("idPlayer", idPlayer);
+        startActivity(intent);
     }
 
 

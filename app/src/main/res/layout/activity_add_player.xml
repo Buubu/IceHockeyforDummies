@@ -24,7 +24,7 @@
     tools:context=".user_interface.AddPlayerActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/addplayer_layout"
+        android:id="@+id/editplayer_layout"
         android:layout_width="match_parent"
         android:layout_height="204dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
 
         <!-- START OF THE RETRIEVED LIBRARY -->
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/addplayer_portrait"
+            android:id="@+id/editplayer_portrait"
             android:layout_width="175dp"
             android:layout_height="175dp"
             android:layout_marginBottom="8dp"
@@ -60,11 +60,11 @@
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/addplayer_secondlayout"
+        android:id="@+id/editplayer_secondlayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ff0000"
-        app:layout_constraintTop_toBottomOf="@+id/addplayer_layout">
+        app:layout_constraintTop_toBottomOf="@+id/editplayer_layout">
 
         <TextView
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
         android:layout_marginBottom="8dp"
         android:background="#8e8e8e"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addplayer_secondlayout"
+        app:layout_constraintTop_toBottomOf="@+id/editplayer_secondlayout"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
 

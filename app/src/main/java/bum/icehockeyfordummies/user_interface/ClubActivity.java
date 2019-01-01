@@ -149,9 +149,9 @@ public class ClubActivity extends AppCompatActivity {
 
     // Edit the club
     public void editClub(View view) {
-        // does something very interesting
-        System.out.print("EDIT");
-        Log.d(TAG, "EDIT");
+        Intent intent = new Intent(ClubActivity.this, EditClubActivity.class);
+        intent.putExtra("idClub", idClub);
+        startActivity(intent);
     }
 
 

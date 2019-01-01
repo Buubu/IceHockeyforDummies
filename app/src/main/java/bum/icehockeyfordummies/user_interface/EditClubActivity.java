@@ -1,17 +1,15 @@
 package bum.icehockeyfordummies.user_interface;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import bum.icehockeyfordummies.R;
 
 
-public class SLActivity extends MainActivity {
+public class EditClubActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Set the SL when checked
         super.onCreate(savedInstanceState);
-        getLayoutInflater().inflate(R.layout.activity_sl, screen);
-        setTitle(R.string.swissleague);
-        navigation.setCheckedItem(position);
+        setContentView(R.layout.activity_edit_club);
     }
 }
