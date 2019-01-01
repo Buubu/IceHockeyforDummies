@@ -32,6 +32,7 @@ public class ClubsActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_clubs, screen);
         setTitle(R.string.clubs);
+        position = R.id.menu_clubs;
         navigation.setCheckedItem(position);
 
 

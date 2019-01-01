@@ -18,6 +18,9 @@
     <string name="clubs">Clubs</string>
     <string name="settings">Settings</string>
     <string name="soon">Coming soon!</string>
+    <string name="favorites">ALL YOUR FAVORITES</string>
+    <string name="anyFav">You don\'t have any favorites yet.
+        Add some directly from the club pages you support!</string>
 
     <!-- Club page values -->
     <string name="players">PLAYERS</string>

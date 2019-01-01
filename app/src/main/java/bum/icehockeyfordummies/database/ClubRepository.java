@@ -57,8 +57,6 @@ public class ClubRepository {
         return new ClubsLiveData(reference, false);
     }
 
-    // Select all clubs from a league
-    //TODO: if I have the time to do it...
 
     // Select all favorite clubs
     public LiveData<List<ClubEntity>> getAllFavorites() {

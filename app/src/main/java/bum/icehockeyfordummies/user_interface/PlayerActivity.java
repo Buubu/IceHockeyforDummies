@@ -101,6 +101,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     // Edit the player
     public void editPlayer(View view) {
+        Intent edit = new Intent(PlayerActivity.this, EditPlayerActivity.class);
         edit.putExtra("idPlayer", idPlayer);
         startActivity(edit);
     }
