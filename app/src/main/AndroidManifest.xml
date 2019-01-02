@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- ©2018-2019, Montaine BURGER -->
+<!-- HES-SO Valais-Wallis, FIG -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bum.icehockeyfordummies">
 
@@ -16,22 +19,28 @@
         <activity android:name=".user_interface.GameCenterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".user_interface.NLActivity" />
-        <activity android:name=".user_interface.MSLActivity" />
-        <activity android:name=".user_interface.RLActivity" />
-        <activity android:name=".user_interface.SettingsActivity" />
-        <activity android:name=".user_interface.SLActivity" />
-        <activity android:name=".user_interface.ClubsActivity" />
-        <activity android:name=".user_interface.ClubActivity" />
+        <activity android:name=".user_interface.NLActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
+        <activity android:name=".user_interface.SLActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
+        <activity android:name=".user_interface.MSLActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
+        <activity android:name=".user_interface.RLActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
+        <activity android:name=".user_interface.ClubsActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
+        <activity android:name=".user_interface.SettingsActivity"
+            android:parentActivityName=".user_interface.GameCenterActivity" />
+        <activity android:name=".user_interface.ClubActivity"
+            android:parentActivityName=".user_interface.ClubsActivity" />
         <activity android:name=".user_interface.PlayerActivity" />
-        <activity android:name=".user_interface.AddClubActivity" />
+        <activity android:name=".user_interface.AddClubActivity"
+            android:parentActivityName=".user_interface.ClubsActivity" />
         <activity android:name=".user_interface.AddPlayerActivity" />
         <activity android:name=".user_interface.EditClubActivity" />
-        <activity android:name=".user_interface.EditPlayerActivity"></activity>
+        <activity android:name=".user_interface.EditPlayerActivity" />
     </application>
-
 </manifest>

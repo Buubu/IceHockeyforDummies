@@ -1,3 +1,5 @@
+/* ©2018-2019, Montaine BURGER
+   HES-SO Valais-Wallis, FIG */
 package bum.icehockeyfordummies.database;
 
 import android.arch.lifecycle.LiveData;
@@ -28,6 +30,7 @@ public class LeagueRepository {
     }
 
 
+    // Not used following Mr Schumacher's instructions
 //    // Select a league by its id
 //    public LiveData<LeagueEntity> getLeague(final String id) {
 //        DatabaseReference reference = FirebaseDatabase.getInstance()
@@ -89,7 +92,3 @@ public class LeagueRepository {
                 });
     }
 }
-
-//    // Delete "all" data: only data added by the user (not the initial data)
-//    @Query("DELETE FROM leagues WHERE league_system = 0")
-//    void deleteAll();

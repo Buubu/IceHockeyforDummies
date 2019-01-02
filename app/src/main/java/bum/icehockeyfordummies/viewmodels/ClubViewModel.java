@@ -1,3 +1,5 @@
+/* ©2018-2019, Montaine BURGER
+   HES-SO Valais-Wallis, FIG */
 package bum.icehockeyfordummies.viewmodels;
 
 import android.app.Application;
@@ -6,13 +8,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
-
-import java.util.ArrayList;
-
 import bum.icehockeyfordummies.database.BaseApp;
 import bum.icehockeyfordummies.database.ClubEntity;
 import bum.icehockeyfordummies.database.ClubRepository;
-import bum.icehockeyfordummies.database.LeagueEntity;
 
 
 public class ClubViewModel extends AndroidViewModel {

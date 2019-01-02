@@ -1,3 +1,5 @@
+/* ©2018-2019, Montaine BURGER
+   HES-SO Valais-Wallis, FIG */
 package bum.icehockeyfordummies.firebase;
 
 import android.arch.lifecycle.LiveData;
@@ -5,7 +7,6 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,8 @@
+/* ©2018-2019, Montaine BURGER
+   HES-SO Valais-Wallis, FIG */
 package bum.icehockeyfordummies.adapters;
 
 import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;

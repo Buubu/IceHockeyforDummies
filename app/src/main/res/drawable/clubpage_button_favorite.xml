@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- ©2018-2019, Montaine BURGER -->
+<!-- HES-SO Valais-Wallis, FIG -->
+
+
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Default -->
     <item android:state_checked="false"

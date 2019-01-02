@@ -1,3 +1,5 @@
+/* ©2018-2019, Montaine BURGER
+   HES-SO Valais-Wallis, FIG */
 package bum.icehockeyfordummies.viewmodels;
 
 import android.app.Application;

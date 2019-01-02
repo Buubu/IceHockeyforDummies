@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- ©2018-2019, Montaine BURGER -->
+<!-- HES-SO Valais-Wallis, FIG -->
+
+
 <!-- Look of the header of the navigation menu -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
