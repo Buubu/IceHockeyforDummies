@@ -5,8 +5,12 @@ import android.util.Log;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
+import java.util.Map;
+
 import bum.icehockeyfordummies.firebase.PlayerLiveData;
 import bum.icehockeyfordummies.firebase.PlayersLiveData;
+import bum.icehockeyfordummies.firebase.UPlayersLiveData;
+import bum.icehockeyfordummies.viewmodels.FavoritesViewModel;
 
 
 public class PlayerRepository {
@@ -38,6 +42,14 @@ public class PlayerRepository {
                 .child(id);
 
         return new PlayerLiveData(reference);
+    }
+
+    // Select all the users' players
+    public LiveData<List<PlayerEntity>> getUPlayers() {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("players");
+
+        return new UPlayersLiveData(reference);
     }
 
     // Select all players from a club
@@ -104,17 +116,19 @@ public class PlayerRepository {
     public void delete(final String player, final String club) {
 
         // Delete the reference of the player inside the club
-        FirebaseDatabase.getInstance()
-                .getReference("clubs")
-                .child(club)
-                .child("players")
-                .child(player).removeValue((databaseError, databaseReference) -> {
-            if (databaseError != null) {
-                Log.d(TAG, "Delete failure!", databaseError.toException());
-            } else {
-                Log.d(TAG, "Delete successful!");
-            }
-        });
+        if (club != null) {
+            FirebaseDatabase.getInstance()
+                    .getReference("clubs")
+                    .child(club)
+                    .child("players")
+                    .child(player).removeValue((databaseError, databaseReference) -> {
+                if (databaseError != null) {
+                    Log.d(TAG, "Delete failure!", databaseError.toException());
+                } else {
+                    Log.d(TAG, "Delete successful!");
+                }
+            });
+        }
 
         // Delete the player
         FirebaseDatabase.getInstance()
@@ -128,8 +142,21 @@ public class PlayerRepository {
                     }
                 });
     }
-}
 
-//    // Delete "all" data: only data added by the user (not the initial data)
-//    @Query("DELETE FROM players WHERE player_system = 0")
-//    void deleteAll();
+    // Delete all the players
+    public void deleteAll(List<PlayerEntity> players) {
+
+        // For each player...
+        for (PlayerEntity player: players) {
+            String id = player.getId();
+            String key = null;
+
+            if (!player.getClubs().isEmpty()) {
+                Map.Entry<String, Boolean> entry = player.getClubs().entrySet().iterator().next();
+                key = entry.getKey();
+            }
+
+            delete(id, key);
+        }
+    }
+}

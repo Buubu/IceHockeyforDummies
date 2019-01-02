@@ -2,20 +2,14 @@ package bum.icehockeyfordummies.database;
 
 import android.arch.lifecycle.LiveData;
 import android.util.Log;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import bum.icehockeyfordummies.firebase.ClubLiveData;
 import bum.icehockeyfordummies.firebase.ClubsLiveData;
+import bum.icehockeyfordummies.firebase.UClubsLiveData;
 
 
 public class ClubRepository {
@@ -57,13 +51,20 @@ public class ClubRepository {
         return new ClubsLiveData(reference, false);
     }
 
-
     // Select all favorite clubs
     public LiveData<List<ClubEntity>> getAllFavorites() {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("clubs");
 
         return new ClubsLiveData(reference, true);
+    }
+
+    // Select all the users' clubs
+    public LiveData<List<ClubEntity>> getUClubs() {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clubs");
+
+        return new UClubsLiveData(reference);
     }
 
 
@@ -193,8 +194,26 @@ public class ClubRepository {
                     }
                 });
     }
-}
 
-//    // Delete "all" data: only data added by the user (not the initial data)
-//    @Query("DELETE FROM clubs WHERE club_system = 0")
-//    void deleteAll();
+    // Delete all the clubs
+    public void deleteAll(List<ClubEntity> clubs) {
+
+        // For each club...
+        for (int club=0; club<clubs.size(); club++) {
+            // Get the league
+            Map.Entry<String, Boolean> entry = clubs.get(club).getLeagues().entrySet().iterator().next();
+            String key = entry.getKey();
+
+            // Get the players
+            Map<String, Boolean> ref = clubs.get(club).getPlayers();
+            ArrayList<String> players = new ArrayList<>();
+            for (Map.Entry<String, Boolean> player: ref.entrySet()) {
+                String id = player.getKey();
+                players.add(id);
+            }
+
+            // Delete the club
+            delete(clubs.get(club).getId(), key, players);
+        }
+    }
+}
